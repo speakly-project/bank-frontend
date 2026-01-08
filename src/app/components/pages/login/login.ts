@@ -11,7 +11,7 @@ import { Boton } from '../../ui/c-boton/c-boton';
   styleUrl: './login.scss',
 })
 export class Login {
-  email: string = '';
+  login: string = '';
   password: string = '';
   errorMessage: string = '';
   isLoading: boolean = false;
@@ -20,15 +20,15 @@ export class Login {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    if (!this.email || !this.password) {
-      this.errorMessage = 'El correo o la contraseña son incorrectos.';
+    if (!this.login || !this.password) {
+      this.errorMessage = 'El usuario o la contraseña son incorrectos.';
       return;
     }
 
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.authService.login(this.email, this.password).subscribe({
+    this.authService.login(this.login, this.password).subscribe({
       next: (response) => {
         this.isLoading = false;
         this.router.navigate(['/cursos']);

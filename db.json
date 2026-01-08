@@ -1,0 +1,178 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "login": "ana",
+            "encryptedPassword": "ana123",
+            "nombre": "Ana",
+            "apellido1": "Ruiz",
+            "apellido2": "Martín",
+            "dni": "11223344C",
+            "api_key": "token_ana_112233",
+            "accounts": [
+                {
+                    "iban": "ES4800491500051234567890",
+                    "balance": 2450.35,
+                    "credit_cards": [
+                        {
+                            "number": "4111111111111111",
+                            "expiration_date": "2027-10",
+                            "cvc": "111",
+                            "full_name": "Ana Ruiz Martín"
+                        },
+                        {
+                            "number": "5555555555554444",
+                            "expiration_date": "2028-06",
+                            "cvc": "222",
+                            "full_name": "Ana Ruiz Martín"
+                        }
+                    ],
+                    "transactions": [
+                        {
+                            "transaction_type": "deposit",
+                            "transaction_origin": "credit card",
+                            "credit_card": "4111111111111111",
+                            "date": "2024-02-03T09:15:00Z",
+                            "amount": 300,
+                            "description": "Ingreso inicial"
+                        }
+                    ]
+                },
+                {
+                    "iban": "ES9121000418450200012345",
+                    "balance": 980.5,
+                    "credit_cards": []
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "login": "luis",
+            "encryptedPassword": "luis123",
+            "nombre": "Luis",
+            "apellido1": "Gómez",
+            "apellido2": "Navarro",
+            "dni": "22334455D",
+            "api_key": "token_luis_223344",
+            "accounts": [
+                {
+                    "iban": "ES7620770024003102500001",
+                    "balance": 1320,
+                    "credit_cards": [
+                        {
+                            "number": "4000000000000002",
+                            "expiration_date": "2027-9",
+                            "cvc": "333",
+                            "full_name": "Luis Gómez Navarro"
+                        }
+                    ],
+                    "transactions": [
+                        {
+                            "transaction_type": "withdraw",
+                            "transaction_origin": "credit card",
+                            "credit_card": "4000000000000002",
+                            "date": "2024-03-11T18:05:00Z",
+                            "amount": 120,
+                            "description": "Retirada en cajero"
+                        }
+                    ]
+                },
+                {
+                    "iban": "ES6621000418450200065432",
+                    "balance": 4100.2,
+                    "credit_cards": []
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "login": "sara",
+            "encryptedPassword": "sara123",
+            "nombre": "Sara",
+            "apellido1": "Díaz",
+            "apellido2": "Ortega",
+            "dni": "33445566E",
+            "api_key": "token_sara_334455",
+            "accounts": [
+                {
+                    "iban": "ES4800491500051234500003",
+                    "balance": 560.75,
+                    "credit_cards": [
+                        {
+                            "number": "5200828282828210",
+                            "expiration_date": "2028-11",
+                            "cvc": "444",
+                            "full_name": "Sara Díaz Ortega"
+                        },
+                        {
+                            "number": "6011111111111117",
+                            "expiration_date": "2029-01",
+                            "cvc": "555",
+                            "full_name": "Sara Díaz Ortega"
+                        }
+                    ],
+                    "transactions": [
+                        {
+                            "transaction_type": "deposit",
+                            "transaction_origin": "credit card",
+                            "credit_card": "5200828282828210",
+                            "date": "2024-04-20T12:00:00Z",
+                            "amount": 200,
+                            "description": "Recarga"
+                        }
+                    ]
+                },
+                {
+                    "iban": "ES9121000418450200099999",
+                    "balance": 2500,
+                    "credit_cards": []
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "login": "pepe",
+            "encryptedPassword": "pepe123",
+            "nombre": "Pepe",
+            "apellido1": "Perez",
+            "apellido2": "Lopez",
+            "dni": "12345678A",
+            "api_key": "abcdef123456",
+            "accounts": [
+                {
+                    "iban": "ES7620770024003102575766",
+                    "balance": 1500.75,
+                    "credit_cards": [
+                        {
+                            "number": "4532756279624064",
+                            "expiration_date": "2027-9",
+                            "cvc": "300",
+                            "full_name": "Pepe Perez Lopez"
+                        },
+                        {
+                            "number": "5500005555554444",
+                            "expiration_date": "2028-11",
+                            "cvc": "123",
+                            "full_name": "Pepe Perez Lopez"
+                        }
+                    ],
+                    "transactions": [
+                        {
+                            "transaction_type": "deposit",
+                            "transaction_origin": "credit card",
+                            "credit_card": "4532756279624064",
+                            "date": "2024-01-15T10:30:00Z",
+                            "amount": 500,
+                            "description": "Precio para sacar ha Maduro de EEUU."
+                        }
+                    ]
+                },
+                {
+                    "iban": "ES9121000418450200051332",
+                    "balance": 3200,
+                    "credit_cards": []
+                }
+            ]
+        }
+    ]
+}

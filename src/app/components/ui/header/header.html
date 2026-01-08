@@ -14,15 +14,20 @@
                     </li>
                     <li class="c-header__item">
                             <button c-boton [tipo]="'underlined'" [importancia]="'primaria'" routerLink="/cursos">
-                            Cursos
+                            Bank
                             </button>
                     </li>
                     <li class="c-header__item">
                             <button c-boton [tipo]="'underlined'" [importancia]="'primaria'" routerLink="/users">
-                            Usuarios
+                            Credits Cards
                             </button>
                     </li>
-                    <!-- <li class="c-header__item">
+                    <li class="c-header__item">
+                            <button c-boton [tipo]="'underlined'" [importancia]="'primaria'" routerLink="/users">
+                            Transactions
+                            </button>
+                    </li>
+                    <li class="c-header__item">
                             <button c-boton [tipo]="'underlined'" [importancia]="'secundaria'"
                                     [routerLink]="!authService.isAuthenticated() ? '/login' : '/logout'">
                                 @if (!authService.isAuthenticated()) {
@@ -31,7 +36,7 @@
                                     Logout
                                 }
                             </button>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
         </div>
