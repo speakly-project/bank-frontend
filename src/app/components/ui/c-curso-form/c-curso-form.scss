@@ -1,0 +1,178 @@
+
+:host {
+    --c-curso-form-header-padding: var(--mlt-sys-padding-20);
+    --c-curso-form-header-border-bottom: 1px solid var(--mlt-sys-primary-color-1);
+    --c-curso-form-header-bg: var(--mlt-sys-primary-color-9);
+    --c-curso-form-title-font-size: var(--mlt-sys-font-size-24);
+    --c-curso-form-title-font-weight: var(--mlt-sys-font-weight-500);
+    --c-curso-form-title-margin: var(--mlt-sys-margin-0) var(--mlt-sys-margin-0) var(--mlt-sys-margin-8) var(--mlt-sys-margin-0);
+    --c-curso-form-title-color: rgba(0, 0, 0, 0.87);
+    --c-curso-form-id-font-size: var(--mlt-sys-font-size-16);
+    --c-curso-form-id-font-weight: var(--mlt-sys-font-weight-400);
+    --c-curso-form-id-margin: var(--mlt-sys-margin-0);
+    --c-curso-form-id-color: rgba(0, 0, 0, 0.6);
+    --c-curso-form-actions-padding: var(--mlt-sys-padding-16) var(--mlt-sys-padding-24);
+    --c-curso-form-actions-border-top: 1px solid var(--mlt-sys-primary-color-1);
+    --c-curso-form-actions-bg: var(--mlt-sys-primary-color-1);
+    --c-curso-form-actions-margin: var(--mlt-sys-margin-0);
+}
+.c-curso-form {
+  &__error {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #d32f2f;
+  }
+
+  &__error-general {
+    color: #d32f2f;
+    font-weight: 500;
+  }
+
+  &__input.ng-invalid.ng-touched {
+    border-color: #d32f2f;
+  }
+}
+
+
+.c-curso-form {
+    --c-curso-form-padding: var(--mlt-sys-padding-20);
+    --c-curso-form-bg: var(--mlt-sys-primary-color-9);
+    --c-curso-form-label-font-weight: var(--mlt-sys-font-weight-500);
+    --c-curso-form-label-color: rgba(0, 0, 0, 0.6);
+    --c-curso-form-label-font-size: var(--mlt-sys-font-size-14);
+    --c-curso-form-label-margin-bottom: var(--mlt-sys-margin-8);
+    --c-curso-form-input-border: 1px solid var(--mlt-sys-primary-color-2);
+    --c-curso-form-input-border-radius: var(--mlt-sys-border-radius-4);
+    --c-curso-form-input-padding: var(--mlt-sys-padding-10) var(--mlt-sys-padding-12);
+    --c-curso-form-input-font-size: var(--mlt-sys-font-size-14);
+    --c-curso-form-input-width: var(--mlt-sys-width-100p);
+    --c-curso-form-input-focus-border-color: var(--mlt-sys-primary-color-6);
+    --c-curso-form-input-disabled-bg: var(--mlt-sys-primary-color-9);
+    --c-curso-form-input-disabled-color: var(--mlt-sys-primary-color-1);
+    --c-curso-form-row-margin-left: var(--mlt-sys-margin-0);
+    --c-curso-form-row-margin-right: var(--mlt-sys-margin-0);
+    --c-curso-form-row-gap: var(--mlt-sys-gap-24);
+    --c-curso-form-col-min-width: var(--mlt-sys-width-220);
+    --c-curso-form-col-padding-left: var(--mlt-sys-padding-0);
+    --c-curso-form-col-padding-right: var(--mlt-sys-padding-0);
+
+    padding: var(--c-curso-form-padding);
+    background-color: var(--c-curso-form-bg);
+
+    &-header {
+        padding: var(--c-curso-form-header-padding);
+        border-bottom: var(--c-curso-form-header-border-bottom);
+        background-color: var(--c-curso-form-header-bg);
+    }
+
+    &__title {
+        font-size: var(--c-curso-form-title-font-size);
+        font-weight: var(--c-curso-form-title-font-weight);
+        line-height: 32px;
+        letter-spacing: 0;
+        margin: var(--c-curso-form-title-margin);
+        color: var(--c-curso-form-title-color);
+    }
+
+    &__id {
+        font-size: var(--c-curso-form-id-font-size);
+        font-weight: var(--c-curso-form-id-font-weight);
+        line-height: 20px;
+        letter-spacing: 0.25px;
+        margin: var(--c-curso-form-id-margin);
+        color: var(--c-curso-form-id-color);
+    }
+
+    &__label {
+        font-weight: var(--c-curso-form-label-font-weight);
+        color: var(--c-curso-form-label-color);
+        font-size: var(--c-curso-form-label-font-size);
+        margin-bottom: var(--c-curso-form-label-margin-bottom);
+        &--asterisk {
+            color: #ff0000;
+        }
+    }
+
+    &__input {
+        border: var(--c-curso-form-input-border);
+        border-radius: var(--c-curso-form-input-border-radius);
+        padding: var(--c-curso-form-input-padding);
+        font-size: var(--c-curso-form-input-font-size);
+        font-family: inherit;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        width: var(--c-curso-form-input-width);
+
+        &:focus {
+            outline: none;
+            border-color: var(--c-curso-form-input-focus-border-color);
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+
+        &:disabled {
+            background-color: var(--c-curso-form-input-disabled-bg);
+            color: var(--c-curso-form-input-disabled-color);
+            cursor: not-allowed;
+        }
+    }
+
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: var(--c-curso-form-row-gap);
+        margin-left: var(--c-curso-form-row-margin-left);
+        margin-right: var(--c-curso-form-row-margin-right);
+
+    }
+
+    &__col {
+        flex: 1 1 0;
+        min-width: var(--c-curso-form-col-min-width);
+        padding-left: var(--c-curso-form-col-padding-left);
+        padding-right: var(--c-curso-form-col-padding-right);
+    }
+
+    &__actions {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        flex-wrap: wrap;
+        min-height: 52px;
+        padding: var(--c-curso-form-actions-padding);
+        border-top: var(--c-curso-form-actions-border-top);
+        background-color: var(--c-curso-form-actions-bg);
+        margin: var(--c-curso-form-actions-margin);
+        box-sizing: border-box;
+        position: relative;
+        justify-content: space-between;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    .c-curso-form {
+        padding: 15px;
+
+        &__row {
+            flex-direction: column;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        &__col {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        &__actions {
+            padding: 12px 15px;
+        }
+
+        &__header {
+            padding: 15px;
+        }
+    }
+
+}

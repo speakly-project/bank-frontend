@@ -1,0 +1,59 @@
+<c-table title="Panel de usuarios" [isEmpty]="users.length === 0">
+    <div c-table-filters class="users__toolbar">
+        <div class="users__filters">
+            <div class="users__filter">
+                <label for="roleSelect" class="users__label">Rol:</label>
+                <select id="roleSelect" class="users__select" (change)="onRoleChange($event)">
+                    <option value="All">Todos</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="USER">USER</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="users__results">
+            Resultados: <strong>{{ users.length }}</strong>
+        </div>
+    </div>
+
+    <button c-table-actions c-boton [importancia]="'primaria'" (click)="nuevoUser()">
+        <i class="bi bi-plus-circle"></i>
+        Nuevo usuario
+    </button>
+
+    <tr c-table-header>
+        <th class="users__type-header users__type-header--center">ID</th>
+        <th class="users__type-header">Nombre de usuario</th>
+        <th class="users__type-header">Email</th>
+        <th class="users__type-header">Rol</th>
+        <th class="users__type-header">Fecha Creación</th>
+        <th class="users__type-header users__type-header--center">Borrar</th>
+    </tr>
+
+    <ng-container c-table-body>
+        @for (user of users; track user.id) {
+        <tr>
+            <td class="users__type-cell users__type-cell--center">{{ user.id }}</td>
+            <td class="users__semibold g--padding-6">
+                <span (click)="modificarUser(user.id)" class="users__clickable">
+                    {{ user.username }}
+                </span>
+            </td>
+            <td class="users__type-cell">{{ user.email }}</td>
+            <td class="users__type-cell"><span c-tag>{{ user.role }}</span></td>
+            <td class="users__type-cell">{{ user.createdAt | date:'dd/MM/yyyy' }}</td>
+            <td class="users__type-cell users__type-cell--center">
+                <button c-boton importancia="danger" (click)="borrarUser(user.id)">
+                    Borrar Usuario
+                    <i class="bi bi-trash"></i>
+                </button>
+            </td>
+        </tr>
+        }
+    </ng-container>
+
+    <div c-table-empty>
+        <strong>No se han encontrado usuarios</strong>
+    </div>
+
+</c-table>

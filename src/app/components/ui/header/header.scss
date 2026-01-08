@@ -1,0 +1,59 @@
+.c-header {
+    --c-header-bg-color: var(--mlt-sys-primary-color-5);
+    --c-header-bg-color-secondary: var(--mlt-sys-secondary-color-4);
+    --c-header-bg-color-alternative: var(--mlt-sys-alternative-color-4);
+    --c-header-padding: var(--mlt-sys-padding-16) var(--mlt-sys-padding-24);
+    --c-header-width: var(--mlt-sys-width-100p);
+    --c-header-margin-left: var(--mlt-sys-margin-left-15);
+    --c-header-letter-color: var(--mlt-sys-alternative-color-1);
+    --c-header-font-size: var(--mlt-sys-font-size-24);
+    --c-header-font-weight: var(--mlt-sys-font-weight-600);
+    --c-header-gap: var(--mlt-sys-gap-16);
+    --c-header-margin: var(--mlt-sys-margin-0);
+
+
+
+    
+    &__nav {
+        background-color: var(--c-header-bg-color);
+        padding: var(--c-header-padding);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        width: var(--c-header-width);
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: var(--c-header-margin-left);
+    }
+
+    &__brand {
+        color: white;//var(--c-header-letter-color);
+        font-size: var(--c-header-font-size);
+        font-weight: var(--c-header-font-weight);
+        display: flex;
+        align-items: center;
+        gap: var(--c-header-gap);
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: var(--mlt-sys-alternative-color-5);
+        }
+    }
+
+    &__logo {
+        object-fit: cover;
+    }
+
+
+    &__list {
+        display: flex;
+        gap: var(--c-header-gap);
+        list-style: none;
+        margin: var(--c-header-margin);
+    }
+
+
+}

@@ -1,0 +1,90 @@
+
+:host {
+    --c-user-form-header-padding: var(--mlt-sys-padding-20);
+    --c-user-form-header-border-bottom: 1px solid var(--mlt-sys-primary-color-1);
+    --c-user-form-header-bg: var(--mlt-sys-primary-color-9);
+    --c-user-form-title-font-size: var(--mlt-sys-font-size-24);
+    --c-user-form-title-font-weight: var(--mlt-sys-font-weight-500);
+    --c-user-form-title-margin: var(--mlt-sys-margin-0) var(--mlt-sys-margin-0) var(--mlt-sys-margin-8) var(--mlt-sys-margin-0);
+    --c-user-form-title-color: rgba(0, 0, 0, 0.87);
+    --c-user-form-id-font-size: var(--mlt-sys-font-size-16);
+    --c-user-form-id-font-weight: var(--mlt-sys-font-weight-400);
+    --c-user-form-id-margin: var(--mlt-sys-margin-0);
+    --c-user-form-id-color: rgba(0, 0, 0, 0.6);
+    --c-user-form-actions-padding: var(--mlt-sys-padding-16) var(--mlt-sys-padding-24);
+    --c-user-form-actions-border-top: 1px solid var(--mlt-sys-primary-color-1);
+    --c-user-form-actions-bg: var(--mlt-sys-primary-color-1);
+    --c-user-form-actions-margin: var(--mlt-sys-margin-0);
+}
+
+.c-user-form {
+    --c-user-form-padding: var(--mlt-sys-padding-20);
+    --c-user-form-bg: var(--mlt-sys-primary-color-9);
+    --c-user-form-label-font-weight: var(--mlt-sys-font-weight-500);
+    --c-user-form-label-color: rgba(0, 0, 0, 0.6);
+    --c-user-form-label-font-size: var(--mlt-sys-font-size-14);
+    --c-user-form-label-margin-bottom: var(--mlt-sys-margin-8);
+    --c-user-form-input-border: 1px solid var(--mlt-sys-primary-color-2);
+    --c-user-form-input-border-radius: var(--mlt-sys-border-radius-4);
+    --c-user-form-input-padding: var(--mlt-sys-padding-10) var(--mlt-sys-padding-12);
+    --c-user-form-input-font-size: var(--mlt-sys-font-size-14);
+    --c-user-form-input-width: var(--mlt-sys-width-100p);
+    --c-user-form-input-focus-border-color: var(--mlt-sys-primary-color-6);
+
+    padding: var(--c-user-form-padding);
+    background-color: var(--c-user-form-bg);
+
+    &-header {
+        padding: var(--c-user-form-header-padding);
+        border-bottom: var(--c-user-form-header-border-bottom);
+        background-color: var(--c-user-form-header-bg);
+    }
+
+    &__title {
+        font-size: var(--c-user-form-title-font-size);
+        font-weight: var(--c-user-form-title-font-weight);
+        margin: var(--c-user-form-title-margin);
+        color: var(--c-user-form-title-color);
+    }
+
+    &__id {
+        font-size: var(--c-user-form-id-font-size);
+        font-weight: var(--c-user-form-id-font-weight);
+        margin: var(--c-user-form-id-margin);
+        color: var(--c-user-form-id-color);
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        font-weight: var(--c-user-form-label-font-weight);
+        color: var(--c-user-form-label-color);
+        font-size: var(--c-user-form-label-font-size);
+        margin-bottom: var(--c-user-form-label-margin-bottom);
+    }
+
+    &__input {
+        border: var(--c-user-form-input-border);
+        border-radius: var(--c-user-form-input-border-radius);
+        padding: var(--c-user-form-input-padding);
+        font-size: var(--c-user-form-input-font-size);
+        width: var(--c-user-form-input-width);
+
+        &:focus {
+            outline: none;
+            border-color: var(--c-user-form-input-focus-border-color);
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--mlt-sys-gap-12);
+        padding: var(--c-user-form-actions-padding);
+        border-top: var(--c-user-form-actions-border-top);
+        margin: var(--c-user-form-actions-margin);
+    }
+}

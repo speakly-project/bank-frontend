@@ -1,0 +1,41 @@
+<div class="c-user-form-header">
+  <h2 class="c-user-form__title">{{ modoEdicion ? user.username : 'Nuevo Usuario' }}</h2>
+  @if (modoEdicion) {
+  <h3 class="c-user-form__id">ID: {{ user.id }}</h3>
+  }
+</div>
+
+<form [formGroup]="formulario" class="c-user-form">
+  <div class="c-user-form__group mb-3">
+    <label for="username" class="c-user-form__label">Nombre de usuario</label>
+    <input type="text" class="c-user-form__input" id="username" formControlName="username">
+  </div>
+  <div class="c-user-form__group mb-3">
+    <label for="email" class="c-user-form__label">Email</label>
+    <input type="email" class="c-user-form__input" id="email" formControlName="email">
+  </div>
+  <div class="c-user-form__group mb-3">
+    <label for="profilePictureUrl" class="c-user-form__label">URL de foto de perfil</label>
+    <input type="text" class="c-user-form__input" id="profilePictureUrl" formControlName="profilePictureUrl" placeholder="https://...">
+  </div>
+  @if (!modoEdicion) {
+  <div class="c-user-form__group mb-3">
+    <label for="password" class="c-user-form__label">Contraseña</label>
+    <input type="password" class="c-user-form__input" id="password" formControlName="password" placeholder="Mínimo 6 caracteres">
+  </div>
+  }
+  <div class="c-user-form__group mb-3">
+    <label for="role" class="c-user-form__label">Rol</label>
+    <select class="c-user-form__input" id="role" formControlName="role">
+      <option value="USER">Usuario</option>
+      <option value="ADMIN">Administrador</option>
+    </select>
+  </div>
+</form>
+
+<div class="c-user-form__actions">
+  <button c-boton [importancia]="'warning'" (click)="onGuardar()" [disabled]="!formulario.valid">
+    {{ modoEdicion ? 'Guardar Cambios' : 'Crear Usuario' }}
+  </button>
+  <button c-boton (click)="onCancelar()">Cancelar</button>
+</div>
