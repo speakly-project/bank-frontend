@@ -1,6 +1,14 @@
+<div class="p-home">
+    @if (vm$ | async; as vm) {
+        <section class="p-home__summary" aria-label="Resumen">
+            <div class="p-home__amount">{{ vm.totalBalance | currency }}</div>
+            <div class="p-home__label">Saldo total en cuentas</div>
+        </section>
 
-<br><br>
+        <app-accounts-list [accounts]="vm.accounts"></app-accounts-list>
 
-<h2 class="text-center">
-    Bienvenido a al banko de Speakly
-</h2>
+        <div class="p-home__spacer"></div>
+
+        <app-cards-list [cards]="vm.cards"></app-cards-list>
+    }
+</div>

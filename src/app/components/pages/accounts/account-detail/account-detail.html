@@ -1,0 +1,27 @@
+@if (account$ | async; as account) {
+  <section class="account-detail" aria-label="Detalle de cuenta">
+    <div class="account-detail__header">
+      <div class="account-detail__meta">
+        <h2 class="account-detail__title">Cuenta</h2>
+        <div class="account-detail__iban">IBAN: {{ account.iban }}</div>
+      </div>
+
+      <div class="account-detail__balance" aria-label="Saldo">
+        <div class="account-detail__balance-label">Saldo</div>
+        <div class="account-detail__balance-value">{{ account.balance | currency }}</div>
+      </div>
+    </div>
+
+    <div class="account-detail__content">
+      <app-cards-list [cards]="account.credit_cards ?? []" title="Tarjetas"></app-cards-list>
+      <app-transactions-list
+        [transactions]="account.transactions ?? []"
+        title="Transacciones"
+      ></app-transactions-list>
+    </div>
+  </section>
+} @else {
+  <section class="account-detail" aria-label="Detalle de cuenta">
+    <div class="account-detail__empty">No se ha encontrado la cuenta.</div>
+  </section>
+}

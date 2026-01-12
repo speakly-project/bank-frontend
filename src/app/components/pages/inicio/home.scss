@@ -1,0 +1,41 @@
+:host {
+	--p-home-padding-x: var(--mlt-sys-padding-80);
+	--p-home-padding-y: var(--mlt-sys-padding-24);
+
+	--p-home-amount-font-size: var(--mlt-sys-font-size-48);
+	--p-home-amount-font-weight: var(--mlt-sys-font-weight-700);
+	--p-home-label-font-size: var(--mlt-sys-font-size-14);
+
+	--p-home-text-strong: var(--mlt-sys-primary-color-2);
+	--p-home-text-weak: var(--mlt-sys-primary-color-3);
+	--p-home-gap: var(--mlt-sys-gap-24);
+}
+
+.p-home {
+	padding: var(--p-home-padding-y) var(--p-home-padding-x);
+	display: flex;
+	flex-direction: column;
+	gap: var(--p-home-gap);
+
+	&__summary {
+		display: flex;
+		flex-direction: column;
+		gap: var(--mlt-sys-gap-8);
+	}
+
+	&__amount {
+		font-size: var(--p-home-amount-font-size);
+		font-weight: var(--p-home-amount-font-weight);
+		color: var(--p-home-text-strong);
+		line-height: 1.1;
+	}
+
+	&__label {
+		font-size: var(--p-home-label-font-size);
+		color: var(--p-home-text-weak);
+	}
+
+	&__spacer {
+		height: 0;
+	}
+}

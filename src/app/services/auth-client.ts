@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserInterface } from '../models/UserInterface';
 import { LoginUserInterface } from '../models/LoginUserInterface';
 
 
@@ -59,7 +58,4 @@ export class AuthClient {
     return this.HttpClient.get<LoginUserInterface>(`${this.loginUrl}?login=${encoded}`);
   }
 
-  getUserById(userId: number): Observable<UserInterface> {
-    return this.HttpClient.get<UserInterface>(`${this.apiUrl}/users/${userId}`);
-  }
 }

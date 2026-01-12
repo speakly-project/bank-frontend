@@ -17,13 +17,13 @@
                         {
                             "number": "4111111111111111",
                             "expiration_date": "2027-10",
-                            "cvc": "111",
+                            "cvv": "111",
                             "full_name": "Ana Ruiz Martín"
                         },
                         {
                             "number": "5555555555554444",
                             "expiration_date": "2028-06",
-                            "cvc": "222",
+                            "cvv": "222",
                             "full_name": "Ana Ruiz Martín"
                         }
                     ],
@@ -62,7 +62,7 @@
                         {
                             "number": "4000000000000002",
                             "expiration_date": "2027-9",
-                            "cvc": "333",
+                            "cvv": "333",
                             "full_name": "Luis Gómez Navarro"
                         }
                     ],
@@ -101,13 +101,13 @@
                         {
                             "number": "5200828282828210",
                             "expiration_date": "2028-11",
-                            "cvc": "444",
+                            "cvv": "444",
                             "full_name": "Sara Díaz Ortega"
                         },
                         {
                             "number": "6011111111111117",
                             "expiration_date": "2029-01",
-                            "cvc": "555",
+                            "cvv": "555",
                             "full_name": "Sara Díaz Ortega"
                         }
                     ],
@@ -146,31 +146,46 @@
                         {
                             "number": "4532756279624064",
                             "expiration_date": "2027-9",
-                            "cvc": "300",
+                            "cvv": "300",
                             "full_name": "Pepe Perez Lopez"
                         },
                         {
                             "number": "5500005555554444",
                             "expiration_date": "2028-11",
-                            "cvc": "123",
+                            "cvv": "123",
                             "full_name": "Pepe Perez Lopez"
                         }
                     ],
                     "transactions": [
                         {
-                            "transaction_type": "deposit",
+                            "transaction_type": "debit",
                             "transaction_origin": "credit card",
                             "credit_card": "4532756279624064",
                             "date": "2024-01-15T10:30:00Z",
                             "amount": 500,
-                            "description": "Precio para sacar ha Maduro de EEUU."
+                            "description": "Pago de la baliza v16."
+                        },
+                        {
+                            "transaction_type": "credit",
+                            "transaction_origin": "credit card",
+                            "credit_card": "5500005555554444",
+                            "date": "2025-01-15T10:30:00Z",
+                            "amount": 1500,
+                            "description": "Recompensa por capturar a Maduro."
                         }
                     ]
                 },
                 {
                     "iban": "ES9121000418450200051332",
                     "balance": 3200,
-                    "credit_cards": []
+                    "credit_cards": [
+                        {
+                            "number": "6767676767676767",
+                            "expiration_date": "2067-06",
+                            "cvv": "676",
+                            "full_name": "Pepe Perez Lopez"
+                        }
+                    ]
                 }
             ]
         }

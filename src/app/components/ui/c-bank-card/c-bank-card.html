@@ -1,0 +1,20 @@
+<div class="container">
+    <header>
+        <span class="logo">
+            <img src="assets/targeta-speakly-bank-logo.png" alt="Speakly Bank">
+            <h5>Speakly Bank</h5>
+        </span>
+        <img src="assets/chip.png" alt="" class="chip">
+    </header>
+    <div class="card-details">
+        <div class="name-number">
+            <h6>Card Number</h6>
+            <h5 class="number">{{ formatNumber(number ?? '') }}</h5>
+            <h5 class="name">{{ holder }}</h5>
+        </div>
+        <div class="valid-date">
+            <h6>Valid Thru</h6>
+            <h5>{{ expiry }}</h5>
+        </div>
+    </div>
+</div>

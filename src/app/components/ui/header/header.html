@@ -8,34 +8,44 @@
             <div class="c-header__links">
                 <ul class="c-header__list">
                     <li class="c-header__item">
-                            <button c-boton [tipo]="'underlined'" [importancia]="'secundaria'" routerLink="/">
+                        <button c-boton [tipo]="'underlined'" [importancia]="'secundaria'" routerLink="/">
                             Home
-                            </button>
+                        </button>
                     </li>
                     <li class="c-header__item">
-                            <button c-boton [tipo]="'underlined'" [importancia]="'primaria'" routerLink="/cursos">
+                        <button c-boton [tipo]="'underlined'" [importancia]="'primaria'" routerLink="/cursos">
                             Bank
-                            </button>
+                        </button>
                     </li>
                     <li class="c-header__item">
-                            <button c-boton [tipo]="'underlined'" [importancia]="'primaria'" routerLink="/users">
-                            Credits Cards
+                        @if (authService.isAuthenticated()) {
+                        <div class="c-header__menu" #menuRoot>
+                            <button c-boton [tipo]="'underlined'" [importancia]="'primaria'"
+                                aria-haspopup="menu" [attr.aria-expanded]="isMenuOpen" (click)="toggleMenu()">
+                                Cuenta
                             </button>
-                    </li>
-                    <li class="c-header__item">
-                            <button c-boton [tipo]="'underlined'" [importancia]="'primaria'" routerLink="/users">
-                            Transactions
-                            </button>
-                    </li>
-                    <li class="c-header__item">
-                            <button c-boton [tipo]="'underlined'" [importancia]="'secundaria'"
-                                    [routerLink]="!authService.isAuthenticated() ? '/login' : '/logout'">
-                                @if (!authService.isAuthenticated()) {
-                                    Login
-                                }@else {
+
+                            @if (isMenuOpen) {
+                            <div class="c-header__dropdown" role="menu">
+                                <button c-boton [tipo]="'underlined'" [importancia]="'secundaria'" routerLink="/bank"
+                                    (click)="closeMenu()">
+                                    Accounts
+                                </button>
+                                <button c-boton [tipo]="'underlined'" [importancia]="'secundaria'" routerLink="/bank"
+                                    (click)="closeMenu()">
+                                    Transactions
+                                </button>
+
+                                <hr class="c-header__divider" />
+
+                                <button class="c-header__logout" c-boton [tipo]="'underlined'" [importancia]="'secundaria'" routerLink="/logout"
+                                    (click)="closeMenu()">
                                     Logout
-                                }
-                            </button>
+                                </button>
+                            </div>
+                            }
+                        </div>
+                        }
                     </li>
                 </ul>
             </div>

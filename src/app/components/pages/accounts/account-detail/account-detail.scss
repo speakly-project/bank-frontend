@@ -1,0 +1,64 @@
+.account-detail {
+    --account-title-size: var(--mlt-sys-font-size-24);
+    --account-title-weight: var(--mlt-sys-font-weight-600);
+    --account-sub-size: var(--mlt-sys-font-size-12);
+
+    --account-text-strong: var(--mlt-sys-primary-color-2);
+    --account-text-weak: var(--mlt-sys-primary-color-3);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--mlt-sys-gap-20);
+    padding: var(--mlt-sys-padding-20) var(--mlt-sys-padding-80);
+
+    &__header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--mlt-sys-gap-16);
+    }
+
+    &__title {
+        margin: 0;
+        font-size: var(--account-title-size);
+        font-weight: var(--account-title-weight);
+        color: var(--account-text-strong);
+    }
+
+    &__iban {
+        font-size: var(--account-sub-size);
+        color: var(--account-text-weak);
+        margin-top: var(--mlt-sys-margin-6);
+        word-break: break-word;
+    }
+
+    &__balance {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: var(--mlt-sys-gap-4);
+    }
+
+    &__balance-label {
+        font-size: var(--account-sub-size);
+        color: var(--account-text-weak);
+        white-space: nowrap;
+    }
+
+    &__balance-value {
+        font-size: var(--mlt-sys-font-size-24);
+        font-weight: var(--mlt-sys-font-weight-700);
+        color: var(--account-text-strong);
+        white-space: nowrap;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mlt-sys-gap-20);
+    }
+
+    &__empty {
+        color: var(--account-text-weak);
+    }
+}

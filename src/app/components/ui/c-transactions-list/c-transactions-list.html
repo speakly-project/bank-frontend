@@ -1,0 +1,33 @@
+<section class="c-tx" aria-label="{{ title }}">
+  <div class="c-tx__header">
+    <h3 class="c-tx__title">{{ title }}</h3>
+  </div>
+
+  @if (transactions.length === 0) {
+    <div class="c-tx__empty">No hay transacciones.</div>
+  } @else {
+    <div class="c-tx__panel">
+      @for (tx of transactions; track tx.date + '-' + tx.amount) {
+        <div class="c-tx__row">
+          <div class="c-tx__left">
+            <span class="c-tx__icon" aria-hidden="true"></span>
+            <div class="c-tx__meta">
+              <div class="c-tx__name">{{ label(tx) }}</div>
+              <div class="c-tx__sub">{{ sublabel(tx) }}</div>
+            </div>
+          </div>
+
+          <div class="c-tx__right">
+            <div
+              class="c-tx__amount"
+              [class.c-tx__amount--debit]="isDebit(tx)"
+              [class.c-tx__amount--credit]="isCredit(tx)"
+            >
+              {{ amountPrefix(tx) }}{{ absoluteAmount(tx) | currency }}
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

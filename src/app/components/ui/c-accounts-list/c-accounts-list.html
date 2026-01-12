@@ -1,0 +1,52 @@
+<section class="c-accounts" aria-label="{{ title }}">
+  <div class="c-accounts__header">
+    <h3 class="c-accounts__title">{{ title }}</h3>
+
+    <div class="c-accounts__totals" aria-label="Totales">
+      <div class="c-accounts__total">
+        <div class="c-accounts__total-label">Saldo disponible</div>
+        <div class="c-accounts__total-value">{{ totalBalance() | currency }}</div>
+      </div>
+      <div class="c-accounts__total">
+        <div class="c-accounts__total-label">Saldo total</div>
+        <div class="c-accounts__total-value">{{ totalBalance() | currency }}</div>
+      </div>
+    </div>
+  </div>
+
+  @if (accounts.length === 0) {
+    <div class="c-accounts__empty">No hay cuentas.</div>
+  } @else {
+    <div class="c-accounts__panel">
+      <div class="c-accounts__head-row" aria-hidden="true">
+        <div class="c-accounts__head-spacer"></div>
+        <div class="c-accounts__head-cols">
+          <div class="c-accounts__head-col">Saldo disponible</div>
+          <div class="c-accounts__head-col">Saldo total</div>
+        </div>
+      </div>
+
+      @for (account of accounts; track account.iban) {
+        <a class="c-accounts__row" [routerLink]="['/accounts', account.iban]">
+          <div class="c-accounts__left">
+            <span class="c-accounts__icon" aria-hidden="true"></span>
+            <div class="c-accounts__meta">
+              <div class="c-accounts__name">{{ accountLabel(account) }}</div>
+              <div class="c-accounts__sub">{{ account.iban }}</div>
+            </div>
+          </div>
+
+          <div class="c-accounts__right">
+            <div class="c-accounts__amounts">
+              <div class="c-accounts__amount">{{ account.balance | currency }}</div>
+              <div class="c-accounts__amount c-accounts__amount--muted">
+                {{ account.balance | currency }}
+              </div>
+            </div>
+            <div class="c-accounts__chevron" aria-hidden="true">›</div>
+          </div>
+        </a>
+      }
+    </div>
+  }
+</section>
