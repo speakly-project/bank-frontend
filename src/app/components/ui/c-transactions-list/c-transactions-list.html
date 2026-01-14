@@ -7,23 +7,23 @@
     <div class="c-tx__empty">No hay transacciones.</div>
   } @else {
     <div class="c-tx__panel">
-      @for (tx of transactions; track tx.date + '-' + tx.amount) {
+      @for (transaction of transactions; track $index) {
         <div class="c-tx__row">
           <div class="c-tx__left">
             <span class="c-tx__icon" aria-hidden="true"></span>
             <div class="c-tx__meta">
-              <div class="c-tx__name">{{ label(tx) }}</div>
-              <div class="c-tx__sub">{{ sublabel(tx) }}</div>
+              <div class="c-tx__name">{{ label(transaction) }}</div>
+              <div class="c-tx__sub">{{ sublabel(transaction) }}</div>
             </div>
           </div>
 
           <div class="c-tx__right">
             <div
               class="c-tx__amount"
-              [class.c-tx__amount--debit]="isDebit(tx)"
-              [class.c-tx__amount--credit]="isCredit(tx)"
+              [class.c-tx__amount--debit]="isDebit(transaction)"
+              [class.c-tx__amount--credit]="isCredit(transaction)"
             >
-              {{ amountPrefix(tx) }}{{ absoluteAmount(tx) | currency }}
+              {{ amountPrefix(transaction) }}{{ absoluteAmount(transaction) | currency }}
             </div>
           </div>
         </div>

@@ -1,9 +1,9 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, map, Observable } from 'rxjs';
-import { BankAccountInterface } from '../../../../models/BankInterfaces';
-import { BankDataService } from '../../../../services/bank-data.service';
+import { Subscription } from 'rxjs';
+import { BankAccountInterface, BankCreditCardInterface } from '../../../../models/BankInterfaces';
+import { BankDataClient } from '../../../../services/bank-data-client';
 import { CTransactionsList } from '../../../ui/c-transactions-list/c-transactions-list';
 import { CCardsList } from '../../../ui/c-cards-list/c-cards-list';
 
@@ -15,25 +15,43 @@ import { CCardsList } from '../../../ui/c-cards-list/c-cards-list';
 })
 export class AccountDetail {
   private readonly route = inject(ActivatedRoute);
-  private readonly bankData = inject(BankDataService);
+  private readonly bankDataClient = inject(BankDataClient);
+  private subscriptions = new Subscription();
 
-  private normalizeIban(value: string): string {
-    return (value ?? '').replace(/\s+/g, '').toUpperCase();
+  account: BankAccountInterface | null = null;
+
+  ngOnInit() {
+    this.subscriptions.add(
+      this.route.paramMap.subscribe(params => {
+        const iban = params.get('iban');
+        if (iban) {
+          this.bankDataClient.getAccountDetailsByIban(iban).subscribe(detail => {
+
+            this.account = {
+              iban: detail.iban,
+              balance: detail.balance,
+              credit_cards: detail.cards.map(card => ({
+                number: card.cardNumber,
+                expiration_date: card.expirationDate,
+                cvv: card.cvv,
+                full_name: card.fullName,
+              })),
+              transactions: detail.transactions.map(transaction => ({
+                transaction_type: transaction.type,
+                transaction_origin: transaction.origin,
+                credit_card: transaction.originCardNumber || undefined,
+                date: transaction.transactionDate,
+                amount: transaction.amount,
+                description: transaction.description,
+              })),
+            };
+          });
+        }
+      })
+    );
   }
 
-  readonly iban$: Observable<string> = this.route.paramMap.pipe(
-    map((params) => params.get('iban') ?? '')
-  );
-
-  readonly account$: Observable<BankAccountInterface | null> = combineLatest([
-    this.iban$,
-    this.bankData.getAccounts(),
-  ]).pipe(
-    map(([iban, accounts]) => {
-      const target = this.normalizeIban(iban);
-      return (
-        accounts.find((a) => this.normalizeIban(a.iban) === target) ?? null
-      );
-    })
-  );
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 }

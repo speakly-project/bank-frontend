@@ -12,41 +12,43 @@ export class CTransactionsList {
   @Input({ required: true }) transactions: BankTransactionInterface[] = [];
   @Input() title = 'Transacciones';
 
-  private normalizedType(tx: BankTransactionInterface): string {
-    return String(tx?.transaction_type ?? '').trim().toLowerCase();
+  private normalizedType(transaction: BankTransactionInterface): string {
+    return String(transaction?.transaction_type ?? '').trim().toLowerCase();
   }
 
-  isDebit(tx: BankTransactionInterface): boolean {
-    return this.normalizedType(tx) === 'debit';
+  isDebit(transaction: BankTransactionInterface): boolean {
+    const type = this.normalizedType(transaction);
+    return type === 'debit' || type === 'subtract';
   }
 
-  isCredit(tx: BankTransactionInterface): boolean {
-    return this.normalizedType(tx) === 'credit';
+  isCredit(transaction: BankTransactionInterface): boolean {
+    const type = this.normalizedType(transaction);
+    return type === 'credit' || type === 'add';
   }
 
-  amountPrefix(tx: BankTransactionInterface): string {
-    if (this.isCredit(tx)) {
+  amountPrefix(transaction: BankTransactionInterface): string {
+    if (this.isCredit(transaction)) {
       return '+ ';
     }
 
-    if (this.isDebit(tx)) {
+    if (this.isDebit(transaction)) {
       return '- ';
     }
 
     return '';
   }
 
-  absoluteAmount(tx: BankTransactionInterface): number {
-    const value = Number(tx?.amount);
+  absoluteAmount(transaction: BankTransactionInterface): number {
+    const value = Number(transaction?.amount);
     return Number.isFinite(value) ? Math.abs(value) : 0;
   }
 
-  label(tx: BankTransactionInterface): string {
-    return tx?.description || tx?.transaction_type || 'Movimiento';
+  label(transaction: BankTransactionInterface): string {
+    return transaction?.description || transaction?.transaction_type || 'Movimiento';
   }
 
-  sublabel(tx: BankTransactionInterface): string {
-    const origin = tx?.transaction_origin ? `• ${tx.transaction_origin}` : '';
-    return `${tx?.date ?? ''} ${origin}`.trim();
+  sublabel(transaction: BankTransactionInterface): string {
+    const origin = transaction?.transaction_origin ? `• ${transaction.transaction_origin}` : '';
+    return `${transaction?.date ?? ''} ${origin}`.trim();
   }
 }
