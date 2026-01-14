@@ -1,14 +1,12 @@
 <div class="p-home">
-    @if (vm$ | async; as vm) {
-        <section class="p-home__summary" aria-label="Resumen">
-            <div class="p-home__amount">{{ vm.totalBalance | currency }}</div>
-            <div class="p-home__label">Saldo total en cuentas</div>
-        </section>
+    <section class="p-home__summary" aria-label="Resumen">
+        <div class="p-home__amount">{{ totalBalance | currency }}</div>
+        <div class="p-home__label">Saldo total en cuentas</div>
+    </section>
 
-        <app-accounts-list [accounts]="vm.accounts"></app-accounts-list>
+    <app-accounts-list [accounts]="accounts"></app-accounts-list>
 
-        <div class="p-home__spacer"></div>
+    <div class="p-home__spacer"></div>
 
-        <app-cards-list [cards]="vm.cards"></app-cards-list>
-    }
+    <app-cards-list [cards]="cards"></app-cards-list>
 </div>

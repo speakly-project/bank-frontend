@@ -1,33 +1,41 @@
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { combineLatest, map, shareReplay } from 'rxjs';
+import { CurrencyPipe } from '@angular/common';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CAccountsList } from '../../ui/c-accounts-list/c-accounts-list';
 import { CCardsList } from '../../ui/c-cards-list/c-cards-list';
 import { BankDataService } from '../../../services/bank-data.service';
-import { BankAccountInterface } from '../../../models/BankInterfaces';
+import { BankAccountInterface, BankCreditCardInterface } from '../../../models/BankInterfaces';
 
 @Component({
   selector: 'app-home',
-  imports: [AsyncPipe, CurrencyPipe, CAccountsList, CCardsList],
+  imports: [CurrencyPipe, CAccountsList, CCardsList],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
+export class Home implements OnInit, OnDestroy {
   private readonly bankData = inject(BankDataService);
+  private subscriptions = new Subscription();
 
-  readonly accounts$ = this.bankData.getAccounts().pipe(shareReplay({ bufferSize: 1, refCount: true }));
-  readonly cards$ = this.bankData.getCards().pipe(shareReplay({ bufferSize: 1, refCount: true }));
+  accounts: BankAccountInterface[] = [];
+  cards: BankCreditCardInterface[] = [];
+  totalBalance = 0;
 
-  readonly totalBalance$ = this.accounts$.pipe(
-    map((accounts: BankAccountInterface[]) =>
-      accounts.reduce((sum, a) => sum + (Number.isFinite(a.balance) ? a.balance : 0), 0)
-    ),
-    shareReplay({ bufferSize: 1, refCount: true })
-  );
+  ngOnInit() {
+    this.subscriptions.add(
+      this.bankData.getAccounts().subscribe(accounts => {
+        this.accounts = accounts;
+        this.totalBalance = accounts.reduce((sum, a) => sum + a.balance, 0);
+      })
+    );
 
-  readonly vm$ = combineLatest({
-    totalBalance: this.totalBalance$,
-    accounts: this.accounts$,
-    cards: this.cards$,
-  }).pipe(shareReplay({ bufferSize: 1, refCount: true }));
+    this.subscriptions.add(
+      this.bankData.getCards().subscribe(cards => {
+        this.cards = cards;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 }

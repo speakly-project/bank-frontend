@@ -20,8 +20,7 @@ export class BankDataService {
     }
 
     // Normalmente el token es api_key; fallback a id si hiciera falta.
-    return this.http
-      .get<BankUserInterface[]>(this.usersUrl, {
+    return this.http.get<BankUserInterface[]>(this.usersUrl, {
         params: new HttpParams().set('api_key', token),
       })
       .pipe(
