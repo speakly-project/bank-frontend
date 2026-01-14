@@ -1,10 +1,11 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { Subscription, switchMap } from 'rxjs';
 import { CAccountsList } from '../../ui/c-accounts-list/c-accounts-list';
 import { CCardsList } from '../../ui/c-cards-list/c-cards-list';
 import { BankDataClient } from '../../../services/bank-data-client';
 import { BankAccountInterface, BankCreditCardInterface } from '../../../models/BankInterfaces';
+import { AuthClient } from '../../../services/auth-client';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,9 @@ import { BankAccountInterface, BankCreditCardInterface } from '../../../models/B
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit, OnDestroy {
+export class Home {
   private readonly bankDataClient = inject(BankDataClient);
+  private readonly authClient = inject(AuthClient);
   private subscriptions = new Subscription();
 
   accounts: BankAccountInterface[] = [];
@@ -21,11 +23,12 @@ export class Home implements OnInit, OnDestroy {
   totalBalance = 0;
 
   ngOnInit() {
-    // TODO: Obtener el clientId del usuario autenticado
-    const clientId = 4; // Temporal
-
     this.subscriptions.add(
-      this.bankDataClient.getAccountsWithCardsByClientId(clientId).subscribe(accountsDetails => {
+      this.authClient.getCurrentUserFromToken()
+        .pipe(
+          switchMap(user => this.bankDataClient.getAccountsWithCardsByClientId(Number(user.id)))
+        )
+        .subscribe(accountsDetails => {
         this.accounts = accountsDetails.map(detail => ({
           id: detail.id,
           iban: detail.iban,

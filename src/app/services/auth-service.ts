@@ -11,7 +11,8 @@ export class AuthService {
   private readonly TOKEN_KEY = 'authToken';
 
   login(login: string, password: string): Observable<string> {
-    const loginRequest = { login, password };
+    // Backend expects { username, password }
+    const loginRequest = { username: login, password };
 
     return this.httpClient.login(loginRequest).pipe(
       tap((token: string) => {

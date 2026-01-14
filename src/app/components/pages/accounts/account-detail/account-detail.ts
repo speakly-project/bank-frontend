@@ -1,15 +1,15 @@
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BankAccountInterface, BankCreditCardInterface } from '../../../../models/BankInterfaces';
+import { BankAccountInterface } from '../../../../models/BankInterfaces';
 import { BankDataClient } from '../../../../services/bank-data-client';
 import { CTransactionsList } from '../../../ui/c-transactions-list/c-transactions-list';
 import { CCardsList } from '../../../ui/c-cards-list/c-cards-list';
 
 @Component({
   selector: 'app-account-detail',
-  imports: [AsyncPipe, CurrencyPipe, CCardsList, CTransactionsList],
+  imports: [CurrencyPipe, CCardsList, CTransactionsList],
   templateUrl: './account-detail.html',
   styleUrl: './account-detail.scss',
 })
