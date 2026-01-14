@@ -55,7 +55,15 @@
 
         @if (isExpanded(card.number)) {
           <div class="c-cards__details" role="region" aria-label="Detalles de tarjeta">
-            <c-bank-card class="c-cards__credit-card" number="{{ card.number }}" holder="{{ card.full_name }}" expiry="{{ card.expiration_date }}"></c-bank-card>
+            <c-bank-card
+              class="c-cards__credit-card"
+              number="{{ card.number }}"
+              holder="{{ card.full_name }}"
+              expiry="{{ card.expiration_date }}"
+              [revealNumber]="isNumberVisible(card.number)"
+              cvv="{{ card.cvv }}"
+              [revealCvv]="isCvvVisible(card.number)"
+            ></c-bank-card>
             <div class="c-cards__details-grid">
               <div class="c-cards__detail-label">Titular</div>
               <div class="c-cards__detail-label c-cards__detail-label--right">Num</div>

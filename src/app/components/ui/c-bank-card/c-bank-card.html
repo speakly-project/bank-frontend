@@ -1,20 +1,48 @@
-<div class="container">
-    <header>
-        <span class="logo">
-            <img src="assets/targeta-speakly-bank-logo.png" alt="Speakly Bank">
-            <h5>Speakly Bank</h5>
-        </span>
-        <img src="assets/chip.png" alt="" class="chip">
-    </header>
-    <div class="card-details">
-        <div class="name-number">
-            <h6>Card Number</h6>
-            <h5 class="number">{{ formatNumber(number ?? '') }}</h5>
-            <h5 class="name">{{ holder }}</h5>
-        </div>
-        <div class="valid-date">
-            <h6>Valid Thru</h6>
-            <h5>{{ expiry }}</h5>
+<div class="c-bank-card">
+    <div
+        class="c-bank-card__flip"
+        role="button"
+        tabindex="0"
+        [class.is-flipped]="isFlipped"
+        (click)="toggleFlip()"
+        (keydown.enter)="toggleFlip()"
+        (keydown.space)="toggleFlip()"
+        [attr.aria-pressed]="isFlipped"
+        aria-label="Girar tarjeta"
+    >
+        <div class="c-bank-card__inner">
+            <div class="c-bank-card__face c-bank-card__face--front">
+                <div class="c-bank-card__container">
+                    <header class="c-bank-card__header">
+                        <span class="c-bank-card__brand">
+                            <img src="assets/targeta-speakly-bank-logo.png" alt="Speakly Bank">
+                            <h5 class="c-bank-card__h5">Speakly Bank</h5>
+                        </span>
+                        <img src="assets/chip.png" alt="" class="c-bank-card__chip">
+                    </header>
+                    <div class="c-bank-card__details">
+                        <div class="c-bank-card__name-number">
+                            <h6 class="c-bank-card__label">Card Number</h6>
+                            <h5 class="c-bank-card__h5 c-bank-card__number">{{ displayedNumber() }}</h5>
+                            <h5 class="c-bank-card__h5 c-bank-card__name">{{ holder }}</h5>
+                        </div>
+                        <div class="c-bank-card__valid-date">
+                            <h6 class="c-bank-card__label">Valid Thru</h6>
+                            <h5 class="c-bank-card__h5">{{ expiry }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="c-bank-card__face c-bank-card__face--back">
+                <div class="c-bank-card__container c-bank-card__container--back" aria-hidden="true">
+                    <div class="c-bank-card__magstripe"></div>
+                    <div class="c-bank-card__signature">
+                        <span class="c-bank-card__cvv">CVV</span>
+                        <span class="c-bank-card__cvv-value">{{ displayedCvv() }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

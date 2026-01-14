@@ -1,59 +1,210 @@
-*{
-    margin: 0;
-    padding: 0;
+.c-bank-card {
+    --c-bank-card-margin: var(--mlt-sys-margin-0);
+    --c-bank-card-padding: var(--mlt-sys-padding-0);
+    --c-bank-card-width: var(--mlt-sys-width-100p);
+    --c-bank-card-flip-border-radius: var(--mlt-sys-border-radius-18);
+    --c-bank-card-container-padding: var(--mlt-sys-padding-25);
+    --c-bank-card-container-border-radius: var(--mlt-sys-border-radius-15);
+    --c-bank-card-container-back-border-radius: var(--mlt-sys-border-radius-15);
+    --c-bank-card-magstripe-margin: var(--mlt-sys-margin-8);
+    --c-bank-card-magstripe-border-radius: var(--mlt-sys-border-radius-10);
+    --c-bank-card-signature-margin-top: var(--mlt-sys-margin-20);
+    --c-bank-card-signature-padding: var(--mlt-sys-padding-10) var(--mlt-sys-padding-12);
+    --c-bank-card-signature-border-radius: var(--mlt-sys-border-radius-10);
+    --c-bank-card-signature-gap: var(--mlt-sys-gap-10);
+    --c-bank-card-signature-label-font-size: var(--mlt-sys-font-size-10);
+    --c-bank-card-signature-label-weight: var(--mlt-sys-font-weight-600);
+    --c-bank-card-signature-value-font-size: var(--mlt-sys-font-size-14);
+    --c-bank-card-signature-value-weight: var(--mlt-sys-font-weight-700);
+    --c-bank-card-brand-image-width: var(--mlt-sys-width-48);
+    --c-bank-card-h5-font-size: var(--mlt-sys-font-size-16);
+    --c-bank-card-h5-font-weight: var(--mlt-sys-font-weight-400);
+    --c-bank-card-chip-width: var(--mlt-sys-width-60);
+    --c-bank-card-label-font-size: var(--mlt-sys-font-size-10);
+    --c-bank-card-label-font-weight: var(--mlt-sys-font-weight-400);
+    --c-bank-card-number-margin-top: var(--mlt-sys-margin-4);
+    --c-bank-card-number-font-size: var(--mlt-sys-font-size-18);
+    --c-bank-card-name-margin-top: var(--mlt-sys-margin-6);
+    
+    
     box-sizing: border-box;
-}
-.container{
-    position: relative;
-    background-image: url("/assets/card-bg.png");
-    background-size: cover;
-    padding: 25px;
-    border-radius: 15px;
-    max-width: 380px;
-    width: 100%;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-header, .logo{
+    margin: var(--c-bank-card-margin);
+    padding: var(--c-bank-card-padding);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+    justify-content: center;
+    width: var(--c-bank-card-width);
 
-.logo img{
-    width: 48px;
-}
+    &__flip {
+        perspective: 1200px;
+        width: var(--c-bank-card-width);
+        max-width: 380px;
+        aspect-ratio: 1.586;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    &__flip:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.75);
+        outline-offset: 6px;
+        border-radius: var(--c-bank-card-flip-border-radius);
+    }
+    
+    &__inner {
+        position: relative;
+        width: var(--c-bank-card-width);
+        height: 90%;
+        transform-style: preserve-3d;
+        transition: transform 650ms cubic-bezier(.2, .8, .2, 1);
+    }
+    
+    &__face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+    }
+    
+    &__face--back {
+        transform: rotateY(-180deg);
+    }
+    
+    &__flip.is-flipped &__inner {
+        transform: rotateY(-180deg);
+    }
+    
+    &__container {
+        position: relative;
+        background-image: url("/assets/card-bg.png");
+        background-size: cover;
+        padding: var(--c-bank-card-container-padding);
+        border-radius: var(--c-bank-card-container-border-radius);
+        width: var(--c-bank-card-width);
+        height: 100%;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    &__container--back {
+        background-image: none;
+        overflow: hidden;
+    }
+    
+    &__container--back::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("/assets/card-bg.png");
+        background-size: cover;
+        background-position: center;
+        transform: scaleX(-1);
+        border-radius: var(--c-bank-card-container-back-border-radius);
+    }
+    
+    &__container--back::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.12);
+        border-radius: var(--c-bank-card-container-back-border-radius);
+    }
+    
+    &__magstripe {
+        position: relative;
+        z-index: 1;
+        height: 42px;
+        margin-top: var(--c-bank-card-magstripe-margin);
+        border-radius: var(--c-bank-card-magstripe-border-radius);
+        background: rgba(0, 0, 0, 0.55);
+    }
+    
+    &__signature {
+        position: relative;
+        z-index: 1;
+        margin-top: var(--c-bank-card-signature-margin-top);
+        padding: var(--c-bank-card-signature-padding);
+        border-radius: var(--c-bank-card-signature-border-radius);
+        background: rgba(255, 255, 255, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--c-bank-card-signature-gap);
+    }
+    
+    &__signature-label {
+        font-size: var(--c-bank-card-signature-label-font-size);
+        font-weight: var(--c-bank-card-signature-label-weight);
+        color: rgba(0, 0, 0, 0.6);
+        letter-spacing: .12em;
+    }
 
-h5 {
-    font-size: 16px;
-    font-weight: 400;
-    color: #fff;
-}
-
-header .chip{
-    width: 60px;
-
-}
-
-h6 {
-    color: #fff;
-    font-size: 10px;
-    font-weight: 400;
-}
-
-h5.number{
-    margin-top: 4px;
-    font-size: 18px;
-    letter-spacing: 1px;
-}
-
-h5.name {
-    margin-top: 20px;
-}
-
-.container .card-details {
-    margin-top: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    &__signature-value {
+        font-size: var(--c-bank-card-signature-value-font-size);
+        font-weight: var(--c-bank-card-signature-value-weight);
+        color: rgba(0, 0, 0, 0.75);
+        font-variant-numeric: tabular-nums;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        width: 3ch;
+        text-align: right;
+        display: inline-block;
+    }
+    
+    &__header,
+    &__brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    &__brand img {
+        width: var(--c-bank-card-brand-image-width);
+    }
+    
+    &__h5 {
+        font-size: var(--c-bank-card-h5-font-size);
+        font-weight: var(--c-bank-card-h5-font-weight);
+        color: #fff;
+    }
+    
+    &__header &__chip {
+        width: var(--c-bank-card-chip-width);
+    
+    }
+    
+    &__label {
+        color: #fff;
+        font-size: var(--c-bank-card-label-font-size);
+        font-weight: var(--c-bank-card-label-font-weight);
+    }
+    
+    &__number {
+        margin-top: var(--c-bank-card-number-margin-top);
+        font-size: var(--c-bank-card-number-font-size);
+        letter-spacing: 1px;
+        font-variant-numeric: tabular-nums;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        white-space: nowrap;
+    }
+    
+    &__name {
+        margin-top: var(--c-bank-card-name-margin-top);
+    }
+    
+    &__container &__details {
+        margin-top: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 18px;
+        align-items: end;
+    }
+    
+    &__container &__name-number {
+        min-width: 0;
+    }
+    
+    &__container &__valid-date {
+        min-width: 92px;
+        text-align: right;
+    }
 }
