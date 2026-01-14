@@ -16,6 +16,7 @@
       <app-cards-list [cards]="account.credit_cards ?? []" title="Tarjetas"></app-cards-list>
       <app-transactions-list
         [transactions]="account.transactions ?? []"
+        [balance]="account.balance"
         title="Transacciones"
       ></app-transactions-list>
     </div>
