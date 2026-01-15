@@ -87,16 +87,9 @@
     transform: translateX(-50%) scaleX(0);
     transform-origin: center;
     transition: transform 0.3s ease-in-out;
-    pointer-events: none;
-    
-    
-    // opacity: 0;
-    // transition: transform 0.3s ease, opacity 0.2s ease;
+    pointer-events: none;    
 }
-// .c-boton:hover::after {
-//     opacity: 1;
-//     transform: translateX(-50%) scaleX(1);
-// }
+
 .c-boton-underlined:hover::after,
 .c-boton-underlined:focus-visible::after {
     transform: translateX(-50%) scaleX(1);

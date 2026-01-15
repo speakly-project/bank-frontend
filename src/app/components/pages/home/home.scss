@@ -1,17 +1,14 @@
-:host {
+.p-home {
 	--p-home-padding-x: var(--mlt-sys-padding-80);
 	--p-home-padding-y: var(--mlt-sys-padding-24);
-
 	--p-home-amount-font-size: var(--mlt-sys-font-size-48);
 	--p-home-amount-font-weight: var(--mlt-sys-font-weight-700);
 	--p-home-label-font-size: var(--mlt-sys-font-size-14);
-
 	--p-home-text-strong: var(--mlt-sys-primary-color-2);
 	--p-home-text-weak: var(--mlt-sys-primary-color-3);
 	--p-home-gap: var(--mlt-sys-gap-24);
-}
+	--p-home-summary-gap: var(--mlt-sys-gap-8);
 
-.p-home {
 	padding: var(--p-home-padding-y) var(--p-home-padding-x);
 	display: flex;
 	flex-direction: column;
@@ -20,7 +17,7 @@
 	&__summary {
 		display: flex;
 		flex-direction: column;
-		gap: var(--mlt-sys-gap-8);
+		gap: var(--p-home-summary-gap);
 	}
 
 	&__amount {

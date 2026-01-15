@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { BankTransactionInterface } from '../../../models/BankInterfaces';
 
 @Component({
-  selector: 'app-transactions-list',
+  selector: 'c-transactions-list',
   imports: [CurrencyPipe],
   templateUrl: './c-transactions-list.html',
   styleUrl: './c-transactions-list.scss',
@@ -20,47 +20,42 @@ export class CTransactionsList {
     return String(transaction?.transaction_type ?? '').trim().toLowerCase();
   }
 
-  isDebit(transaction: BankTransactionInterface): boolean {
+  private transactionSign(transaction: BankTransactionInterface): 1 | -1 | 0 {
     const type = this.normalizedType(transaction);
-    return type === 'debit' || type === 'subtract';
+
+    if (type === 'credit' || type === 'add') return 1;
+    if (type === 'debit' || type === 'subtract') return -1;
+    return 0;
+  }
+
+  isDebit(transaction: BankTransactionInterface): boolean {
+    return this.transactionSign(transaction) === -1;
   }
 
   isCredit(transaction: BankTransactionInterface): boolean {
-    const type = this.normalizedType(transaction);
-    return type === 'credit' || type === 'add';
+    return this.transactionSign(transaction) === 1;
   }
 
   private signedAmount(transaction: BankTransactionInterface): number {
     const rawAmount = Number(transaction?.amount);
     const amount = Number.isFinite(rawAmount) ? Math.abs(rawAmount) : 0;
 
-    if (this.isCredit(transaction)) return amount;
-    if (this.isDebit(transaction)) return -amount;
-    return 0;
+    return amount * this.transactionSign(transaction);
   }
 
   private ensureCumulativeDeltaCache(): void {
     if (this.cachedTransactionsRef === this.transactions) return;
 
     this.cachedTransactionsRef = this.transactions;
-    this.cachedCumulativeDelta = [];
 
     let running = 0;
-    for (const tx of this.transactions) {
-      running += this.signedAmount(tx);
-      this.cachedCumulativeDelta.push(running);
-    }
+    this.cachedCumulativeDelta = this.transactions.map((transaction) => (running += this.signedAmount(transaction)));
   }
 
   amountPrefix(transaction: BankTransactionInterface): string {
-    if (this.isCredit(transaction)) {
-      return '+ ';
-    }
-
-    if (this.isDebit(transaction)) {
-      return '- ';
-    }
-
+    const sign = this.transactionSign(transaction);
+    if (sign === 1) return '+ ';
+    if (sign === -1) return '- ';
     return '';
   }
 

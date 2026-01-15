@@ -3,7 +3,7 @@ import { BankCreditCardInterface } from '../../../models/BankInterfaces';
 import { CBankCardComponent } from "../c-bank-card/c-bank-card";
 
 @Component({
-  selector: 'app-cards-list',
+  selector: 'c-cards-list',
   imports: [CBankCardComponent],
   templateUrl: './c-cards-list.html',
   styleUrl: './c-cards-list.scss',

@@ -1,134 +1,94 @@
 <section class="c-cards" aria-label="{{ title }}">
   <div class="c-cards__header">
     <h3 class="c-cards__title">{{ title }}</h3>
-
-    <div class="c-cards__totals" aria-label="Totales">
-      <div class="c-cards__total">
-        <div class="c-cards__total-label">Tarjetas activas</div>
-        <div class="c-cards__total-value">{{ activeCards() }}</div>
-      </div>
-      <div class="c-cards__total">
-        <div class="c-cards__total-label">Total tarjetas</div>
-        <div class="c-cards__total-value">{{ totalCards() }}</div>
-      </div>
-    </div>
   </div>
 
   @if (cards.length === 0) {
-    <div class="c-cards__empty">No hay tarjetas.</div>
+  <div class="c-cards__empty">No hay tarjetas.</div>
   } @else {
-    <div class="c-cards__panel">
-      <div class="c-cards__head-row" aria-hidden="true">
-        <div class="c-cards__head-spacer"></div>
-        <div class="c-cards__head-cols">
-          <div class="c-cards__head-col">Caduca</div>
-          <div class="c-cards__head-col">Número</div>
+  <div class="c-cards__panel">
+    <div class="c-cards__head-row" aria-hidden="true">
+      <div class="c-cards__head-spacer"></div>
+      <div class="c-cards__head-cols">
+        <div class="c-cards__head-col">Caduca</div>
+        <div class="c-cards__head-col">Número</div>
+      </div>
+    </div>
+
+    @for (card of cards; track card.number) {
+    <div class="c-cards__row" role="button" tabindex="0" (click)="toggleExpanded(card.number)"
+      (keydown.enter)="toggleExpanded(card.number)" (keydown.space)="toggleExpanded(card.number)"
+      [attr.aria-expanded]="isExpanded(card.number)">
+      <div class="c-cards__left">
+        <span class="c-cards__icon" aria-hidden="true"></span>
+        <div class="c-cards__meta">
+          <div class="c-cards__name">Tarjeta {{ maskCardNumber(card.number) }}</div>
+          <div class="c-cards__sub">{{ card.full_name ?? '' }}</div>
         </div>
       </div>
 
-      @for (card of cards; track card.number) {
-        <div
-          class="c-cards__row"
-          role="button"
-          tabindex="0"
-          (click)="toggleExpanded(card.number)"
-          (keydown.enter)="toggleExpanded(card.number)"
-          (keydown.space)="toggleExpanded(card.number)"
-          [attr.aria-expanded]="isExpanded(card.number)"
-        >
-          <div class="c-cards__left">
-            <span class="c-cards__icon" aria-hidden="true"></span>
-            <div class="c-cards__meta">
-              <div class="c-cards__name">Tarjeta {{ maskCardNumber(card.number) }}</div>
-              <div class="c-cards__sub">{{ card.full_name ?? '' }}</div>
-            </div>
-          </div>
+      <div class="c-cards__right">
+        <div class="c-cards__cols">
+          <div class="c-cards__col">{{ card.expiration_date }}</div>
+          <div class="c-cards__col c-cards__col--muted">{{ maskCardNumber(card.number) }}</div>
+        </div>
+        <div class="c-cards__chevron" aria-hidden="true">›</div>
+      </div>
+    </div>
 
-          <div class="c-cards__right">
-            <div class="c-cards__cols">
-              <div class="c-cards__col">{{ card.expiration_date }}</div>
-              <div class="c-cards__col c-cards__col--muted">{{ maskCardNumber(card.number) }}</div>
-            </div>
-            <div class="c-cards__chevron" aria-hidden="true">›</div>
-          </div>
+    @if (isExpanded(card.number)) {
+    <div class="c-cards__details" role="region" aria-label="Detalles de tarjeta">
+      <c-bank-card class="c-cards__credit-card" number="{{ card.number }}" holder="{{ card.full_name }}"
+        expiry="{{ card.expiration_date }}" [revealNumber]="isNumberVisible(card.number)" cvv="{{ card.cvv }}"
+        [revealCvv]="isCvvVisible(card.number)"></c-bank-card>
+      <div class="c-cards__details-grid">
+        <div class="c-cards__detail-label">Titular</div>
+        <div class="c-cards__detail-label c-cards__detail-label--right">Num</div>
+
+        <div class="c-cards__detail-value">{{ card.full_name ?? '-' }}</div>
+        <div class="c-cards__detail-value c-cards__detail-value--right c-cards__detail-number">
+          <span>{{ displayedCardNumber(card) }}</span>
+          <button class="c-cards__eye" type="button" (click)="toggleNumber(card, $event)"
+            [attr.aria-label]="isNumberVisible(card.number) ? 'Ocultar número' : 'Mostrar número'">
+            @if (isNumberVisible(card.number)) {
+            <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor"
+                d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7Zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+            </svg>
+            } @else {
+            <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor"
+                d="M2 5.3 3.3 4l16.7 16.7-1.3 1.3-2.2-2.2A10.9 10.9 0 0 1 12 21C5 21 2 14 2 14s1.1-2.6 3.7-4.9L2 5.3Zm6.6 6.6a3.5 3.5 0 0 0 4.9 4.9l-1.3-1.3a1.7 1.7 0 0 1-2.3-2.3l-1.3-1.3ZM12 7c7 0 10 7 10 7s-1.1 2.6-3.7 4.9l-2-2A5 5 0 0 0 9.1 9.7L7.5 8.1A11 11 0 0 1 12 7Z" />
+            </svg>
+            }
+          </button>
         </div>
 
-        @if (isExpanded(card.number)) {
-          <div class="c-cards__details" role="region" aria-label="Detalles de tarjeta">
-            <c-bank-card
-              class="c-cards__credit-card"
-              number="{{ card.number }}"
-              holder="{{ card.full_name }}"
-              expiry="{{ card.expiration_date }}"
-              [revealNumber]="isNumberVisible(card.number)"
-              cvv="{{ card.cvv }}"
-              [revealCvv]="isCvvVisible(card.number)"
-            ></c-bank-card>
-            <div class="c-cards__details-grid">
-              <div class="c-cards__detail-label">Titular</div>
-              <div class="c-cards__detail-label c-cards__detail-label--right">Num</div>
+        <div class="c-cards__detail-label">CVV</div>
+        <div class="c-cards__detail-label c-cards__detail-label--right">Cad</div>
 
-              <div class="c-cards__detail-value">{{ card.full_name ?? '-' }}</div>
-              <div class="c-cards__detail-value c-cards__detail-value--right c-cards__detail-number">
-                <span>{{ displayedCardNumber(card) }}</span>
-                <button
-                  class="c-cards__eye"
-                  type="button"
-                  (click)="toggleNumber(card, $event)"
-                  [attr.aria-label]="isNumberVisible(card.number) ? 'Ocultar número' : 'Mostrar número'"
-                >
-                  @if (isNumberVisible(card.number)) {
-                    <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        fill="currentColor"
-                        d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7Zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
-                      />
-                    </svg>
-                  } @else {
-                    <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        fill="currentColor"
-                        d="M2 5.3 3.3 4l16.7 16.7-1.3 1.3-2.2-2.2A10.9 10.9 0 0 1 12 21C5 21 2 14 2 14s1.1-2.6 3.7-4.9L2 5.3Zm6.6 6.6a3.5 3.5 0 0 0 4.9 4.9l-1.3-1.3a1.7 1.7 0 0 1-2.3-2.3l-1.3-1.3ZM12 7c7 0 10 7 10 7s-1.1 2.6-3.7 4.9l-2-2A5 5 0 0 0 9.1 9.7L7.5 8.1A11 11 0 0 1 12 7Z"
-                      />
-                    </svg>
-                  }
-                </button>
-              </div>
-
-              <div class="c-cards__detail-label">CVV</div>
-              <div class="c-cards__detail-label c-cards__detail-label--right">Cad</div>
-
-              <div class="c-cards__detail-value c-cards__detail-cvv">
-                <span class="c-cards__cvv">{{ displayedCvv(card) }}</span>
-                <button
-                  class="c-cards__eye"
-                  type="button"
-                  (click)="toggleCvv(card, $event)"
-                  [disabled]="!(card.cvv)"
-                  [attr.aria-label]="isCvvVisible(card.number) ? 'Ocultar CVV' : 'Mostrar CVV'"
-                >
-                  @if (isCvvVisible(card.number)) {
-                    <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        fill="currentColor"
-                        d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7Zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
-                      />
-                    </svg>
-                  } @else {
-                    <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        fill="currentColor"
-                        d="M2 5.3 3.3 4l16.7 16.7-1.3 1.3-2.2-2.2A10.9 10.9 0 0 1 12 21C5 21 2 14 2 14s1.1-2.6 3.7-4.9L2 5.3Zm6.6 6.6a3.5 3.5 0 0 0 4.9 4.9l-1.3-1.3a1.7 1.7 0 0 1-2.3-2.3l-1.3-1.3ZM12 7c7 0 10 7 10 7s-1.1 2.6-3.7 4.9l-2-2A5 5 0 0 0 9.1 9.7L7.5 8.1A11 11 0 0 1 12 7Z"
-                      />
-                    </svg>
-                  }
-                </button>
-              </div>
-              <div class="c-cards__detail-value c-cards__detail-value--right">{{ card.expiration_date }}</div>
-            </div>
-          </div>
-        }
-      }
+        <div class="c-cards__detail-value c-cards__detail-cvv">
+          <span class="c-cards__cvv">{{ displayedCvv(card) }}</span>
+          <button class="c-cards__eye" type="button" (click)="toggleCvv(card, $event)" [disabled]="!(card.cvv)"
+            [attr.aria-label]="isCvvVisible(card.number) ? 'Ocultar CVV' : 'Mostrar CVV'">
+            @if (isCvvVisible(card.number)) {
+            <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor"
+                d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7Zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+            </svg>
+            } @else {
+            <svg class="c-cards__eye-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor"
+                d="M2 5.3 3.3 4l16.7 16.7-1.3 1.3-2.2-2.2A10.9 10.9 0 0 1 12 21C5 21 2 14 2 14s1.1-2.6 3.7-4.9L2 5.3Zm6.6 6.6a3.5 3.5 0 0 0 4.9 4.9l-1.3-1.3a1.7 1.7 0 0 1-2.3-2.3l-1.3-1.3ZM12 7c7 0 10 7 10 7s-1.1 2.6-3.7 4.9l-2-2A5 5 0 0 0 9.1 9.7L7.5 8.1A11 11 0 0 1 12 7Z" />
+            </svg>
+            }
+          </button>
+        </div>
+        <div class="c-cards__detail-value c-cards__detail-value--right">{{ card.expiration_date }}</div>
+      </div>
     </div>
+    }
+    }
+  </div>
   }
 </section>

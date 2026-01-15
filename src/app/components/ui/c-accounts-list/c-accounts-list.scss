@@ -1,47 +1,65 @@
-:host {
+.c-accounts {
   --c-accounts-title-font-size: var(--mlt-sys-font-size-24);
   --c-accounts-title-font-weight: var(--mlt-sys-font-weight-600);
   --c-accounts-title-margin-bottom: var(--mlt-sys-margin-16);
-
   --c-accounts-panel-bg: var(--mlt-sys-primary-color-9);
   --c-accounts-panel-border-color: var(--mlt-sys-primary-color-7);
   --c-accounts-panel-border-width: var(--mlt-sys-border-width-1);
   --c-accounts-panel-radius: var(--mlt-sys-border-radius-8);
-
   --c-accounts-row-padding-y: var(--mlt-sys-padding-12);
   --c-accounts-row-padding-x: var(--mlt-sys-padding-16);
   --c-accounts-row-gap: var(--mlt-sys-gap-12);
-
   --c-accounts-name-font-size: var(--mlt-sys-font-size-16);
   --c-accounts-sub-font-size: var(--mlt-sys-font-size-12);
-
   --c-accounts-text-strong: var(--mlt-sys-primary-color-2);
   --c-accounts-text-weak: var(--mlt-sys-primary-color-3);
-
   --c-accounts-icon-size: var(--mlt-sys-width-20);
   --c-accounts-icon-bg: var(--mlt-sys-alternative-color-8);
   --c-accounts-icon-radius: var(--mlt-sys-border-radius-50p);
-}
-
-.c-accounts {
+  --c-accounts-header-gap: var(--mlt-sys-gap-16);
+  --c-accounts-header-margin: var(--mlt-sys-margin-0) var(--mlt-sys-margin-0) var(--c-accounts-title-margin-bottom) var(--mlt-sys-margin-0);
+  --c-accounts-title-margin: var(--mlt-sys-margin-0);
+  --c-accounts-totals-gap: var(--mlt-sys-gap-16);
+  --c-accounts-gap: var(--mlt-sys-gap-4);
+  --c-accounts-font-weight: var(--mlt-sys-font-weight-600);
+  --c-accounts-head-row-padding-y: var(--mlt-sys-padding-10);
+  --c-accounts-head-row-bg: var(--mlt-sys-primary-color-8);
+  --c-accounts-head-spacer: var(--mlt-sys-width-0);
+  --c-accounts-head-cols-gap: var(--mlt-sys-gap-12);
+  --c-accounts-head-cols-width: var(--mlt-sys-width-200);
+  --c-accounts-head-col-font-weight: var(--mlt-sys-font-weight-600);
+  --c-accounts-row-hover-bg: var(--mlt-sys-primary-color-8);
+  --c-accounts-row-focus-outline-color: var(--mlt-sys-primary-color-4);
+  --c-accounts-row-focus-border-width: var(--mlt-sys-border-width-2);
+  --c-accounts-left-min-width: var(--mlt-sys-width-0);
+  --c-accounts-meta-gap: var(--mlt-sys-gap-4);
+  --c-accounts-meta-min-width: var(--mlt-sys-width-0);
+  --c-accounts-name-font-weight: var(--mlt-sys-font-weight-600);
+  --c-accounts-right-gap: var(--mlt-sys-gap-12);
+  --c-accounts-amounts-gap: var(--mlt-sys-gap-12);
+  --c-accounts-amounts-width: var(--mlt-sys-width-200);
+  --c-accounts-amount-font-weight: var(--mlt-sys-font-weight-600);
+  --c-accounts-amount-muted-font-weight: var(--mlt-sys-font-weight-500);
+  --c-accounts-chevron-font-size: var(--mlt-sys-font-size-24);
+  
   &__header {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: var(--mlt-sys-gap-16);
-    margin: 0 0 var(--c-accounts-title-margin-bottom) 0;
+    gap: var(--c-accounts-header-gap);
+    margin: var(--c-accounts-header-margin);
   }
 
   &__title {
     font-size: var(--c-accounts-title-font-size);
     font-weight: var(--c-accounts-title-font-weight);
-    margin: 0;
+    margin: var(--c-accounts-title-margin);
     color: var(--c-accounts-text-strong);
   }
 
   &__totals {
     display: flex;
-    gap: var(--mlt-sys-gap-16);
+    gap: var(--c-accounts-totals-gap);
     flex: 0 0 auto;
   }
 
@@ -49,7 +67,7 @@
     text-align: right;
     display: flex;
     flex-direction: column;
-    gap: var(--mlt-sys-gap-4);
+    gap: var(--c-accounts-gap);
   }
 
   &__total-label {
@@ -60,7 +78,7 @@
 
   &__total-value {
     font-size: var(--c-accounts-name-font-size);
-    font-weight: var(--mlt-sys-font-weight-600);
+    font-weight: var(--c-accounts-font-weight);
     color: var(--c-accounts-text-strong);
     white-space: nowrap;
   }
@@ -76,28 +94,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--mlt-sys-padding-10) var(--c-accounts-row-padding-x);
-    background: var(--mlt-sys-primary-color-8);
+    padding: var(--c-accounts-head-row-padding-y) var(--c-accounts-row-padding-x);
+    background: var(--c-accounts-head-row-bg);
     border-bottom: var(--c-accounts-panel-border-width) solid var(--c-accounts-panel-border-color);
   }
 
   &__head-spacer {
     flex: 1 1 auto;
-    min-width: 0;
+    min-width: var(--c-accounts-head-spacer);
   }
 
   &__head-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--mlt-sys-gap-12);
-    width: var(--mlt-sys-width-200);
+    gap: var(--c-accounts-head-cols-gap);
+    width: var(--c-accounts-head-cols-width);
     text-align: right;
     flex: 0 0 auto;
   }
 
   &__head-col {
     font-size: var(--c-accounts-sub-font-size);
-    font-weight: var(--mlt-sys-font-weight-600);
+    font-weight: var(--c-accounts-head-col-font-weight);
     color: var(--c-accounts-text-weak);
     white-space: nowrap;
   }
@@ -113,11 +131,11 @@
   }
 
   &__row:hover {
-    background: var(--mlt-sys-primary-color-8);
+    background: var(--c-accounts-row-hover-bg);
   }
 
   &__row:focus-visible {
-    outline: var(--mlt-sys-border-width-2) solid var(--mlt-sys-primary-color-4);
+    outline: var(--c-accounts-row-focus-border-width) solid var(--c-accounts-row-focus-outline-color);
     outline-offset: -2px;
   }
 
@@ -129,7 +147,7 @@
     display: flex;
     align-items: center;
     gap: var(--c-accounts-row-gap);
-    min-width: 0;
+    min-width: var(--c-accounts-left-min-width);
   }
 
   &__icon {
@@ -143,13 +161,13 @@
   &__meta {
     display: flex;
     flex-direction: column;
-    gap: var(--mlt-sys-gap-4);
-    min-width: 0;
+    gap: var(--c-accounts-meta-gap);
+    min-width: var(--c-accounts-meta-min-width);
   }
 
   &__name {
     font-size: var(--c-accounts-name-font-size);
-    font-weight: var(--mlt-sys-font-weight-600);
+    font-weight: var(--c-accounts-name-font-weight);
     color: var(--c-accounts-text-strong);
     white-space: nowrap;
     overflow: hidden;
@@ -167,21 +185,21 @@
   &__right {
     display: flex;
     align-items: center;
-    gap: var(--mlt-sys-gap-12);
+    gap: var(--c-accounts-right-gap);
     flex: 0 0 auto;
   }
 
   &__amounts {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--mlt-sys-gap-12);
-    width: var(--mlt-sys-width-200);
+    gap: var(--c-accounts-amounts-gap);
+    width: var(--c-accounts-amounts-width);
     text-align: right;
   }
 
   &__amount {
     font-size: var(--c-accounts-name-font-size);
-    font-weight: var(--mlt-sys-font-weight-600);
+    font-weight: var(--c-accounts-amount-font-weight);
     color: var(--c-accounts-text-strong);
     text-align: right;
     white-space: nowrap;
@@ -189,12 +207,12 @@
 
   &__amount--muted {
     color: var(--c-accounts-text-weak);
-    font-weight: var(--mlt-sys-font-weight-500);
+    font-weight: var(--c-accounts-amount-muted-font-weight);
   }
 
   &__chevron {
     color: var(--c-accounts-text-weak);
-    font-size: var(--mlt-sys-font-size-24);
+    font-size: var(--c-accounts-chevron-font-size);
     line-height: 1;
   }
 

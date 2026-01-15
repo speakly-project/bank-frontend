@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { BankAccountInterface } from '../../../models/BankInterfaces';
 
 @Component({
-  selector: 'app-accounts-list',
+  selector: 'c-accounts-list',
   imports: [CurrencyPipe, RouterLink],
   templateUrl: './c-accounts-list.html',
   styleUrl: './c-accounts-list.scss',

@@ -1,28 +1,28 @@
-<section class="c-tx" aria-label="{{ title }}">
-  <div class="c-tx__header">
-    <h3 class="c-tx__title">{{ title }}</h3>
+<section class="c-transactions" aria-label="{{ title }}">
+  <div class="c-transactions__header">
+    <h3 class="c-transactions__title">{{ title }}</h3>
   </div>
 
   @if (transactions.length === 0) {
-  <div class="c-tx__empty">No hay transacciones.</div>
+  <div class="c-transactions__empty">No hay transacciones.</div>
   } @else {
-  <div class="c-tx__panel">
+  <div class="c-transactions__panel">
     @for (transaction of transactions; track $index) {
-    <div class="c-tx__row">
-      <div class="c-tx__left">
-        <span class="c-tx__icon" aria-hidden="true"></span>
-        <div class="c-tx__meta">
-          <div class="c-tx__name">{{ label(transaction) }}</div>
-          <div class="c-tx__sub">{{ sublabel(transaction) }}</div>
+    <div class="c-transactions__row">
+      <div class="c-transactions__left">
+        <span class="c-transactions__icon" aria-hidden="true"></span>
+        <div class="c-transactions__meta">
+          <div class="c-transactions__name">{{ label(transaction) }}</div>
+          <div class="c-transactions__sub">{{ sublabel(transaction) }}</div>
         </div>
       </div>
 
-      <div class="c-tx__right">
-        <div class="c-tx__amount" [class.c-tx__amount--debit]="isDebit(transaction)"
-          [class.c-tx__amount--credit]="isCredit(transaction)">
+      <div class="c-transactions__right">
+        <div class="c-transactions__amount" [class.c-transactions__amount--debit]="isDebit(transaction)"
+          [class.c-transactions__amount--credit]="isCredit(transaction)">
           {{ amountPrefix(transaction) }}{{ absoluteAmount(transaction) | currency }}
         </div>
-        <div class="c-tx__sub">Saldo antes: {{ amountBefore(transaction, $index) | currency }}</div>
+        <div class="c-transactions__sub">Saldo antes: {{ amountBefore(transaction, $index) | currency }}</div>
       </div>
     </div>
     }

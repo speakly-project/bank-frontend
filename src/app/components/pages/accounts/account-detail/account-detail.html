@@ -1,28 +1,28 @@
 @if (account) {
-  <section class="account-detail" aria-label="Detalle de cuenta">
-    <div class="account-detail__header">
-      <div class="account-detail__meta">
-        <h2 class="account-detail__title">Cuenta</h2>
-        <div class="account-detail__iban">IBAN: {{ account.iban }}</div>
+  <section class="p-account-detail" aria-label="Detalle de cuenta">
+    <div class="p-account-detail__header">
+      <div class="p-account-detail__meta">
+        <h2 class="p-account-detail__title">Cuenta</h2>
+        <div class="p-account-detail__iban">IBAN: {{ account.iban }}</div>
       </div>
 
-      <div class="account-detail__balance" aria-label="Saldo">
-        <div class="account-detail__balance-label">Saldo</div>
-        <div class="account-detail__balance-value">{{ account.balance | currency }}</div>
+      <div class="p-account-detail__balance" aria-label="Saldo">
+        <div class="p-account-detail__balance-label">Saldo</div>
+        <div class="p-account-detail__balance-value">{{ account.balance | currency }}</div>
       </div>
     </div>
 
-    <div class="account-detail__content">
-      <app-cards-list [cards]="account.credit_cards ?? []" title="Tarjetas"></app-cards-list>
-      <app-transactions-list
+    <div class="p-account-detail__content">
+      <c-cards-list [cards]="account.credit_cards ?? []" title="Tarjetas"></c-cards-list>
+      <c-transactions-list
         [transactions]="account.transactions ?? []"
         [balance]="account.balance"
         title="Transacciones"
-      ></app-transactions-list>
+      ></c-transactions-list>
     </div>
   </section>
 } @else {
-  <section class="account-detail" aria-label="Detalle de cuenta">
-    <div class="account-detail__empty">No se ha encontrado la cuenta.</div>
+  <section class="p-account-detail" aria-label="Detalle de cuenta">
+    <div class="p-account-detail__empty">No se ha encontrado la cuenta.</div>
   </section>
 }

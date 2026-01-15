@@ -25,6 +25,10 @@
     --c-bank-card-number-margin-top: var(--mlt-sys-margin-4);
     --c-bank-card-number-font-size: var(--mlt-sys-font-size-18);
     --c-bank-card-name-margin-top: var(--mlt-sys-margin-6);
+    --c-bank-card-container-details-margin-top: var(--mlt-sys-margin-0);
+    --c-bank-card-container-details-column-gap: var(--mlt-sys-gap-18);
+    --c-bank-card-container-name-number-min-width: var(--mlt-sys-min-width-0);
+    --c-bank-card-container-valid-date-min-width: var(--mlt-sys-min-width-92);
     
     
     box-sizing: border-box;
@@ -192,19 +196,19 @@
     }
     
     &__container &__details {
-        margin-top: 0;
+        margin-top: var(--c-bank-card-container-details-margin-top);
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
-        column-gap: 18px;
+        column-gap: var(--c-bank-card-container-details-column-gap);
         align-items: end;
     }
     
     &__container &__name-number {
-        min-width: 0;
+        min-width: var(--c-bank-card-container-name-number-min-width);
     }
     
     &__container &__valid-date {
-        min-width: 92px;
+        min-width: var(--c-bank-card-container-valid-date-min-width);
         text-align: right;
     }
 }

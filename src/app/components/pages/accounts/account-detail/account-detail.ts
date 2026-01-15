@@ -8,7 +8,7 @@ import { CTransactionsList } from '../../../ui/c-transactions-list/c-transaction
 import { CCardsList } from '../../../ui/c-cards-list/c-cards-list';
 
 @Component({
-  selector: 'app-account-detail',
+  selector: 'p-account-detail',
   imports: [CurrencyPipe, CCardsList, CTransactionsList],
   templateUrl: './account-detail.html',
   styleUrl: './account-detail.scss',

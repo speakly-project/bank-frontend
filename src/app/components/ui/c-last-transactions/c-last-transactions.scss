@@ -1,30 +1,45 @@
-:host {
+.c-ltransaction {
   --c-ltransaction-title-font-size: var(--mlt-sys-font-size-24);
   --c-ltransaction-title-font-weight: var(--mlt-sys-font-weight-600);
   --c-ltransaction-title-margin-bottom: var(--mlt-sys-margin-16);
-
   --c-ltransaction-panel-bg: var(--mlt-sys-primary-color-9);
   --c-ltransaction-panel-border-color: var(--mlt-sys-primary-color-7);
   --c-ltransaction-panel-border-width: var(--mlt-sys-border-width-1);
   --c-ltransaction-panel-radius: var(--mlt-sys-border-radius-8);
-
   --c-ltransaction-row-padding-y: var(--mlt-sys-padding-12);
   --c-ltransaction-row-padding-x: var(--mlt-sys-padding-16);
   --c-ltransaction-row-gap: var(--mlt-sys-gap-12);
-
   --c-ltransaction-name-font-size: var(--mlt-sys-font-size-16);
   --c-ltransaction-sub-font-size: var(--mlt-sys-font-size-12);
-
   --c-ltransaction-text-strong: var(--mlt-sys-primary-color-2);
   --c-ltransaction-text-weak: var(--mlt-sys-primary-color-3);
-}
-
-.c-ltransaction {
+  --c-ltransaction-header-gap: var(--mlt-sys-gap-16);
+  --c-ltransaction-meta-gap: var(--mlt-sys-gap-4);
+  --c-ltransaction-min-width: var(--mlt-sys-width-0);
+  --c-ltransaction-name-font-weight: var(--mlt-sys-font-weight-600);
+  --c-ltransaction-gap: var(--mlt-sys-gap-4);
+  --c-ltransaction-min-width: var(--mlt-sys-width-0);
+  --c-ltransaction-amount-font-weight: var(--mlt-sys-font-weight-600);
+  --c-ltransaction-amount-debit-color: var(--mlt-sys-danger-color-5);
+  --c-ltransaction-amount-credit-color: var(--mlt-sys-color-alternative);
+  --c-ltransaction-error-color: var(--mlt-sys-danger-color-5);
+  --c-ltransaction-error-bg: var(--mlt-sys-danger-color-9);
+  --c-ltransaction-error-border-color: var(--mlt-sys-danger-color-7);
+  --c-ltransaction-load-more-gap: var(--mlt-sys-gap-12);
+  --c-ltransaction-load-more-margin-top: var(--mlt-sys-margin-12);
+  --c-ltransaction-load-more-actions-gap: var(--mlt-sys-gap-12);
+  --c-ltransaction-load-more-btn-padding: var(--mlt-sys-padding-12) var(--mlt-sys-padding-24);
+  --c-ltransaction-load-more-btn-bg-color: var(--mlt-sys-primary-color-5);
+  --c-ltransaction-load-more-btn-color: var(--mlt-sys-primary-color-9); 
+  --c-ltransaction-load-more-btn-border-radius: var(--mlt-sys-border-radius-8); 
+  --c-ltransaction-load-more-btn-font-weight: var(--mlt-sys-font-weight-600); 
+  --c-ltransaction-load-more-btn-bg-color: var(--mlt-sys-primary-color-4);
+  
   &__header {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: var(--mlt-sys-gap-16);
+    gap: var(--c-ltransaction-header-gap);
     margin: 0 0 var(--c-ltransaction-title-margin-bottom) 0;
   }
 
@@ -63,13 +78,13 @@
   &__meta {
     display: flex;
     flex-direction: column;
-    gap: var(--mlt-sys-gap-4);
-    min-width: 0;
+    gap: var(--c-ltransaction-meta-gap);
+    min-width: var(--c-ltransaction-min-width);
   }
 
   &__name {
     font-size: var(--c-ltransaction-name-font-size);
-    font-weight: var(--mlt-sys-font-weight-600);
+    font-weight: var(--c-ltransaction-name-font-weight);
     color: var(--c-ltransaction-text-strong);
     white-space: nowrap;
     overflow: hidden;
@@ -88,24 +103,24 @@
   &__right {
     display: flex;
     flex-direction: column;
-    gap: var(--mlt-sys-gap-4);
-    min-width: 0;
+    gap: var(--c-ltransaction-gap);
+    min-width: var(--c-ltransaction-min-width);
   }
 
   &__amount {
     font-size: var(--c-ltransaction-name-font-size);
-    font-weight: var(--mlt-sys-font-weight-600);
+    font-weight: var(--c-ltransaction-amount-font-weight);
     color: var(--c-ltransaction-text-strong);
     white-space: nowrap;
     text-align: right;
   }
 
   &__amount--debit {
-    color: var(--mlt-sys-danger-color-5);
+    color: var(--c-ltransaction-amount-debit-color);
   }
 
   &__amount--credit {
-    color: var(--mlt-sys-color-alternative);
+    color: var(--c-ltransaction-amount-credit-color);
   }
 
   &__empty,
@@ -118,18 +133,18 @@
   }
 
   &__error {
-    color: var(--mlt-sys-danger-color-5);
-    background: var(--mlt-sys-danger-color-9);
-    border-color: var(--mlt-sys-danger-color-7);
+    color: var(--c-ltransaction-error-color);
+    background: var(--c-ltransaction-error-bg);
+    border-color: var(--c-ltransaction-error-border-color);
   }
 
   &__load-more {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--mlt-sys-gap-12);
+    gap: var(--c-ltransaction-load-more-gap);
     padding: var(--c-ltransaction-row-padding-y) var(--c-ltransaction-row-padding-x);
-    margin-top: var(--mlt-sys-margin-12);
+    margin-top: var(--c-ltransaction-load-more-margin-top);
     border-top: var(--c-ltransaction-panel-border-width) solid var(--c-ltransaction-panel-border-color);
   }
 
@@ -137,22 +152,22 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--mlt-sys-gap-12);
+    gap: var(--c-ltransaction-load-more-actions-gap);
   }
 
   &__load-more-btn {
-    padding: var(--mlt-sys-padding-12) var(--mlt-sys-padding-24);
-    background-color: var(--mlt-sys-primary-color-5);
-    color: white;
+    padding: var(--c-ltransaction-load-more-btn-padding);
+    background-color: var(--c-ltransaction-load-more-btn-bg-color);
+    color: var(--c-ltransaction-load-more-btn-color);
     border: none;
-    border-radius: var(--mlt-sys-border-radius-8);
-    font-size: var(--c-ltransaction-name-font-size);
-    font-weight: var(--mlt-sys-font-weight-600);
+    border-radius: var(--c-ltransaction-load-more-btn-border-radius);
+    font-size: var(--c-ltransaction-load-more-btn-font-size);
+    font-weight: var(--c-ltransaction-load-more-btn-font-weight);
     cursor: pointer;
     transition: all 0.2s ease;
 
     &:hover {
-      background-color: var(--mlt-sys-primary-color-4);
+      background-color: var(--c-ltransaction-load-more-btn-bg-color);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 

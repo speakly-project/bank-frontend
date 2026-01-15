@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Boton } from '../../ui/c-boton/c-boton';
 
 @Component({
-  selector: 'login',
+  selector: 'p-login',
   imports: [FormsModule, Boton],
   templateUrl: './login.html',
   styleUrl: './login.scss',
