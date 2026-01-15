@@ -6,10 +6,11 @@ import { CCardsList } from '../../ui/c-cards-list/c-cards-list';
 import { BankDataClient } from '../../../services/bank-data-client';
 import { BankAccountInterface, BankCreditCardInterface } from '../../../models/BankInterfaces';
 import { AuthClient } from '../../../services/auth-client';
+import { CLastTransactions } from "../../ui/c-last-transactions/c-last-transactions";
 
 @Component({
   selector: 'app-home',
-  imports: [CurrencyPipe, CAccountsList, CCardsList],
+  imports: [CurrencyPipe, CAccountsList, CCardsList, CLastTransactions],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

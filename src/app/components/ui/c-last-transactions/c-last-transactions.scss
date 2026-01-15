@@ -1,0 +1,174 @@
+:host {
+  --c-ltransaction-title-font-size: var(--mlt-sys-font-size-24);
+  --c-ltransaction-title-font-weight: var(--mlt-sys-font-weight-600);
+  --c-ltransaction-title-margin-bottom: var(--mlt-sys-margin-16);
+
+  --c-ltransaction-panel-bg: var(--mlt-sys-primary-color-9);
+  --c-ltransaction-panel-border-color: var(--mlt-sys-primary-color-7);
+  --c-ltransaction-panel-border-width: var(--mlt-sys-border-width-1);
+  --c-ltransaction-panel-radius: var(--mlt-sys-border-radius-8);
+
+  --c-ltransaction-row-padding-y: var(--mlt-sys-padding-12);
+  --c-ltransaction-row-padding-x: var(--mlt-sys-padding-16);
+  --c-ltransaction-row-gap: var(--mlt-sys-gap-12);
+
+  --c-ltransaction-name-font-size: var(--mlt-sys-font-size-16);
+  --c-ltransaction-sub-font-size: var(--mlt-sys-font-size-12);
+
+  --c-ltransaction-text-strong: var(--mlt-sys-primary-color-2);
+  --c-ltransaction-text-weak: var(--mlt-sys-primary-color-3);
+}
+
+.c-ltransaction {
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--mlt-sys-gap-16);
+    margin: 0 0 var(--c-ltransaction-title-margin-bottom) 0;
+  }
+
+  &__title {
+    font-size: var(--c-ltransaction-title-font-size);
+    font-weight: var(--c-ltransaction-title-font-weight);
+    margin: 0;
+    color: var(--c-ltransaction-text-strong);
+  }
+
+  &__panel {
+    background: var(--c-ltransaction-panel-bg);
+    border: var(--c-ltransaction-panel-border-width) solid var(--c-ltransaction-panel-border-color);
+    border-radius: var(--c-ltransaction-panel-radius);
+    overflow: hidden;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--c-ltransaction-row-padding-y) var(--c-ltransaction-row-padding-x);
+  }
+
+  &__row + &__row {
+    border-top: var(--c-ltransaction-panel-border-width) solid var(--c-ltransaction-panel-border-color);
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: var(--c-ltransaction-row-gap);
+    min-width: 0;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mlt-sys-gap-4);
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: var(--c-ltransaction-name-font-size);
+    font-weight: var(--mlt-sys-font-weight-600);
+    color: var(--c-ltransaction-text-strong);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__sub {
+    align-items: flex-end;
+    font-size: var(--c-ltransaction-sub-font-size);
+    color: var(--c-ltransaction-text-weak);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mlt-sys-gap-4);
+    min-width: 0;
+  }
+
+  &__amount {
+    font-size: var(--c-ltransaction-name-font-size);
+    font-weight: var(--mlt-sys-font-weight-600);
+    color: var(--c-ltransaction-text-strong);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  &__amount--debit {
+    color: var(--mlt-sys-danger-color-5);
+  }
+
+  &__amount--credit {
+    color: var(--mlt-sys-color-alternative);
+  }
+
+  &__empty,
+  &__error {
+    background: var(--c-ltransaction-panel-bg);
+    border: var(--c-ltransaction-panel-border-width) solid var(--c-ltransaction-panel-border-color);
+    border-radius: var(--c-ltransaction-panel-radius);
+    padding: var(--c-ltransaction-row-padding-y) var(--c-ltransaction-row-padding-x);
+    color: var(--c-ltransaction-text-weak);
+  }
+
+  &__error {
+    color: var(--mlt-sys-danger-color-5);
+    background: var(--mlt-sys-danger-color-9);
+    border-color: var(--mlt-sys-danger-color-7);
+  }
+
+  &__load-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--mlt-sys-gap-12);
+    padding: var(--c-ltransaction-row-padding-y) var(--c-ltransaction-row-padding-x);
+    margin-top: var(--mlt-sys-margin-12);
+    border-top: var(--c-ltransaction-panel-border-width) solid var(--c-ltransaction-panel-border-color);
+  }
+
+  &__load-more-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--mlt-sys-gap-12);
+  }
+
+  &__load-more-btn {
+    padding: var(--mlt-sys-padding-12) var(--mlt-sys-padding-24);
+    background-color: var(--mlt-sys-primary-color-5);
+    color: white;
+    border: none;
+    border-radius: var(--mlt-sys-border-radius-8);
+    font-size: var(--c-ltransaction-name-font-size);
+    font-weight: var(--mlt-sys-font-weight-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: var(--mlt-sys-primary-color-4);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &--ghost {
+      background: transparent;
+      color: var(--c-ltransaction-text-strong);
+      border: var(--c-ltransaction-panel-border-width) solid var(--c-ltransaction-panel-border-color);
+
+      &:hover {
+        background: var(--c-ltransaction-panel-border-color);
+        color: white;
+      }
+    }
+  }
+}

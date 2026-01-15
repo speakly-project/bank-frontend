@@ -1,0 +1,47 @@
+<section class="c-ltransaction" aria-label="Últimas Transacciones">
+    <div class="c-ltransaction__header">
+        <h3 class="c-ltransaction__title">Últimas Transacciones</h3>
+    </div>
+    @if (error) {
+        <div class="c-ltransaction__error">{{ error }}</div>
+    } @else if (transactions.length === 0) {
+        <div class="c-ltransaction__empty">No hay transacciones.</div>
+    } @else {
+        <div class="c-ltransaction__panel">
+            @for (transaction of transactions; track $index) {
+                <div class="c-ltransaction__row" [class.c-ltransaction__row--debit]="isDebit(transaction)" [class.c-ltransaction__row--credit]="isCredit(transaction)">
+                    <div class="c-ltransaction__left">
+                        <div class="c-ltransaction__meta">
+                            <div class="c-ltransaction__name">{{ transaction.description }}</div>
+                            <div class="c-ltransaction__sub">{{ formatDate(transaction.transactionDate) }}</div>
+                        </div>
+                    </div>
+
+                    <div class="c-ltransaction__right">
+                        <div class="c-ltransaction__amount" [class.c-ltransaction__amount--debit]="isDebit(transaction)" [class.c-ltransaction__amount--credit]="isCredit(transaction)">
+                            {{ getAmountPrefix(transaction) }}{{ transaction.amount | currency:'EUR' }}
+                        </div>
+                        @if (transaction.originCardNumber) {
+                            <div class="c-ltransaction__sub">
+                                Tarjeta: **** {{ transaction.originCardNumber.slice(-4) }}
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (hasMoreTransactions()) {
+            <div class="c-ltransaction__load-more">
+                <div class="c-ltransaction__load-more-actions">
+                    <button class="c-ltransaction__load-more-btn" (click)="loadMore()">
+                        Ver más ({{ transactions.length }} de {{ allTransactions.length }})
+                    </button>
+                    <button class="c-ltransaction__load-more-btn c-ltransaction__load-more-btn--ghost" (click)="viewAll()">
+                        Ver todas
+                    </button>
+                </div>
+            </div>
+        }
+    }
+</section>
