@@ -11,14 +11,14 @@ export const loginGuard: CanActivateFn = (route, state) => {
 
   const token = authService.getToken();
   if (!token) {
-    router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    router.navigate(['/login']);
     return false;
   }
 
   return authClient.getCurrentUserFromToken().pipe(
     map(() => true as boolean),
     catchError(() => {
-      router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      router.navigate(['/login']);
       return of(false);
     })
   );
