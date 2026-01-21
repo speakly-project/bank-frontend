@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginUserInterface } from '../models/LoginUserInterface';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthClient {
-  apiUrl = 'http://localhost:8080/api/speakly-bank';
+  apiUrl = environment.apiUrl + 'api/speakly-bank';
 
   HttpClient = inject(HttpClient);
 

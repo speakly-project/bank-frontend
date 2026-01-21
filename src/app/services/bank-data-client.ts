@@ -3,12 +3,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AccountDetailsResponse, AccountSummaryResponse, BankTransactionResponse, CardPaymentRequest, CardPaymentResponse } from '../models/BankInterfaces';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BankDataClient {
-  private readonly baseUrl = 'http://localhost:8080/api/speakly-bank';
+  private readonly baseUrl = environment.apiUrl + 'api/speakly-bank';
   private readonly http = inject(HttpClient);
 
   /**
